@@ -1,4 +1,5 @@
 import React from 'react';
+import PetPage from './containers/PetPage.js'
 import './App.css';
 
 class App extends React.Component {
@@ -7,9 +8,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>
-            Hello!
-          </p>
+        <PetPage />
         </header>
       </div>
     );

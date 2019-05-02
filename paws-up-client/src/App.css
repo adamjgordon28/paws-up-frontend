@@ -31,3 +31,35 @@
     transform: rotate(360deg);
   }
 }
+
+.petCard {
+  display: inline;
+  background-repeat: no-repeat;
+  background-position: center 90%;
+  float: left;
+  margin: 2%;
+  padding: 1%;
+  outline: #3B0B0B dotted thick;
+  transition: 0.75s;
+  opacity: 1;
+}
+
+ul{
+ list-style-type: none;
+ margin: 0px;
+ padding: 0px;
+ overflow: hidden;
+ background-color: #D8C8B2;
+}
+
+li{
+ margin: 0px;
+ float: left;
+ padding: 10px;
+}
+
+li a:hover{
+  margin: 0px;
+  padding: 10px;
+  background-color: #B82647;
+}
