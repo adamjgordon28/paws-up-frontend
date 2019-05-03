@@ -8,7 +8,65 @@ class PetPage extends React.Component {
 
   state = {
     pets: [],
-    selectedPetId: null
+    selectedPetId: null,
+    animalFilter: null,
+    sizeFilter: null,
+    sexFilter: null
+  }
+
+
+  setAnimalFilter = (value) => {
+    this.setState({
+      animalFilter: value
+    })
+  }
+
+  setSizeFilter = (value) => {
+    this.setState({
+      sizeFilter: value
+    })
+  }
+
+  setSexFilter = (value) => {
+    this.setState({
+      sexFilter: value
+    })
+  }
+
+
+
+  filterPets = (array) => {
+    let firstArray;
+    let secondArray;
+    let finalArray;
+    if (this.state.animalFilter){
+      let animalFilteredPets = array.filter((pet)=>{
+        return pet.animal === this.state.animalFilter
+      })
+      firstArray = animalFilteredPets
+    }
+    else {
+      firstArray = array
+    }
+    if (this.state.sizeFilter){
+      let sizeFilteredPets = firstArray.filter((pet)=>{
+        return pet.size === this.state.sizeFilter
+      })
+      secondArray = sizeFilteredPets
+    }
+    else {
+      secondArray = firstArray
+    }
+    if (this.state.sexFilter){
+      let sexFilteredPets = secondArray.filter((pet)=>{
+        return pet.sex === this.state.sexFilter
+      })
+      finalArray = sexFilteredPets
+    }
+    else {
+       finalArray = secondArray
+    }
+    return finalArray
   }
 
   fetchPets = () => {
@@ -46,7 +104,7 @@ class PetPage extends React.Component {
 
 
 
-    {this.state.selectedPetId ? <PetSpec pet = {this.findPet(this.state.selectedPetId)}/> : <Fragment><Filter /><PetContainer pets = {this.state.pets} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
+    {this.state.selectedPetId ? <PetSpec pet = {this.findPet(this.state.selectedPetId)}/> : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setAgeFilter ={this.setAgeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 
 
 

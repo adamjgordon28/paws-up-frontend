@@ -2,9 +2,7 @@ import React from 'react';
 import {Card} from 'semantic-ui-react'
 
 const PetCard = (props) => {
-  function handleClick(){
 
-  }
 
     return (
       <Card>
