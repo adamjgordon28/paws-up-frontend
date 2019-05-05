@@ -80,6 +80,7 @@ class PetPage extends React.Component {
   }
 
 
+
   componentDidMount(){
     this.fetchPets()
   }
@@ -108,7 +109,7 @@ class PetPage extends React.Component {
 
       <PetSpec pet = {this.findPet(this.state.selectedPetId)}/>
 
-    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setAgeFilter ={this.setAgeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
+    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 
 
 

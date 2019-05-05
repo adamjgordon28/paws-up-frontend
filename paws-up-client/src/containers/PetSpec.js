@@ -1,17 +1,20 @@
 import React from 'react';
-import PetInfo from '../components/PetInfo.js'
-import GuardianInfo from '../components/GuardianInfo.js'
+import PetCard from '../components/PetInfo.js'
+
 
 
 
 class PetSpec extends React.Component {
 
   render (){
-      console.log(this.props.pet)
     return (
       <div>
-      <PetInfo pet={this.props.pet} />
-      <GuardianInfo guardian = {this.props.pet.guardian} />
+      <PetCard pet={this.props.pet} />
+      <div>
+        <img alt="" src ={this.props.pet.guardian.img_url}/>
+        <h3>{this.props.pet.guardian.name}</h3>
+        <h3>{this.props.pet.guardian.location}</h3>
+      </div>
       </div>
     )
   }
