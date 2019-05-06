@@ -34,11 +34,17 @@ class CreateAdopterForm extends React.Component {
       <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
       <NavBar />
       <h1>Create an Adopter Account!</h1>
-        <form onSubmit ={this.handleSubmit}>
-        <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required />
+        <form className="ui form" onSubmit ={this.handleSubmit}>
+        <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input  onChange={this.handleChange}
-        placeholder="Age" min="18" name="age" type="number" required/>
-        <input placeholder="Location" onChange={this.handleChange} name="location" type="text" required />
+        placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
+        <select onChange={this.handleChange} name="location" required >
+          <option label="Location"></option>
+          <option label="New York City">Apt</option>
+          <option value="Los Angeles">Townhouse</option>
+          <option value="Boston">Igloo</option>
+          <option value="Chicago">Chateau</option>
+        </select> <br/>
         <select onChange={this.handleChange} name="residence_type" required >
           <option label="Residence Type?"></option>
           <option label="Apt">Apt</option>
@@ -48,19 +54,19 @@ class CreateAdopterForm extends React.Component {
           <option value="Dorm Room">Dorm Room!</option>
           <option value="Bungalow">Bungalow</option>
           <option value="Yurt">Yurt</option>
-        </select>
+        </select> <br/>
         <select onChange={this.handleChange} name="other_pets" required>
           <option label="Any Other Pets?"></option>
           <option value="true">True</option>
           <option value="false">False</option>
-        </select>
+        </select> <br/>
         <select onChange={this.handleChange} name="allergy" required>
           <option label="Allergies?"></option>
           <option value="true">True</option>
           <option value="false">False</option>
-        </select>
+        </select> <br/>
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required/>
-        <input type="submit"/>
+        <br/><button class="ui button" type="submit">Submit</button>
         </form>
       </div>
 
