@@ -9,7 +9,7 @@ class NavBar extends React.Component {
       <div>
         <ul className="navBar">
           <li><a href="http://localhost:3000/">Home</a></li>
-          <li><a href="https://www.facebook.com/">About</a></li>
+          <li><Link to="/about">About</Link></li>
           <li><Link to="/guardians">Meet our Guardians</Link></li>
           <li><Link to='/new-pet'>Register a Pet for Adoption</Link></li>
           <li><Link to='/new-adopter'>Sign Up as an Adopter</Link></li>
