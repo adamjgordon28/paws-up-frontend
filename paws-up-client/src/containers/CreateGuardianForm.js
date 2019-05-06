@@ -1,4 +1,5 @@
 import React from 'react';
+import NavBar from '../components/NavBar.js'
 
 class CreateGuardianForm extends React.Component {
 
@@ -10,7 +11,11 @@ class CreateGuardianForm extends React.Component {
 
   render(){
     return(
-      <div>Create Guardian!</div>
+      <div>
+      <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
+      <NavBar />
+      Create Guardian!
+      </div>
 
     )
   }
