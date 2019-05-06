@@ -100,8 +100,9 @@ class PetPage extends React.Component {
   return (
 
     <Fragment>
-    <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
     <NavBar />
+    <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
+
 
 
 
