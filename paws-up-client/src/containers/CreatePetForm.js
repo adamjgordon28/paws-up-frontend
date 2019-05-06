@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBar from '../components/NavBar.js'
 
 class CreatePetForm extends React.Component {
 
@@ -30,7 +29,6 @@ class CreatePetForm extends React.Component {
   render(){
     return(
       <div>
-      <NavBar />
       <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
 
       <h1>Create a pet!</h1>

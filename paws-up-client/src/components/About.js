@@ -1,12 +1,10 @@
 import React from 'react';
-import NavBar from "./NavBar.js"
 
 
 const About = () => {
 
  return (
   <div>
-    <NavBar />
     <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
 
 
