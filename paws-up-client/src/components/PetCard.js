@@ -6,7 +6,7 @@ const PetCard = (props) => {
 
     return (
 
-        <div style={{ margin: "3em", justifyContent:'center', alignItems:'center', height: '35em'}} className="ui card three wide column" onClick={() => props.setSelectedPet(props.pet)}>
+        <div style={{ margin: "3em", justifyContent:'center', alignItems:'center', height: '35em' }} className="ui card three wide column" onClick={() => props.setSelectedPet(props.pet)}>
           <div className="image">
             <img style={{objectFit: "cover", height: "25em"}} alt="" src={props.pet.img_url}/>
           </div>
