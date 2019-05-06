@@ -15,7 +15,7 @@ renderPets = () => {
 
   render(){
     return (
-      <div className="ui grid container">
+      <div className="ui grid" >
       {this.renderPets()}
       </div>
     )

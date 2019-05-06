@@ -31,10 +31,11 @@ class CreateAdopterForm extends React.Component {
   render(){
     return(
       <div>
-      <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
       <NavBar />
+      <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
+
       <h1>Create an Adopter Account!</h1>
-        <form className="ui form" onSubmit ={this.handleSubmit}>
+        <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input  onChange={this.handleChange}
         placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
@@ -49,7 +50,7 @@ class CreateAdopterForm extends React.Component {
           <option label="Residence Type?"></option>
           <option label="Apt">Apt</option>
           <option value="Townhouse">Townhouse</option>
-          <option value="Igloo">Igloo</option>
+          <option value="One-Story-House">One-Story-House</option>
           <option value="Chateau">Chateau</option>
           <option value="Dorm Room">Dorm Room!</option>
           <option value="Bungalow">Bungalow</option>
@@ -66,7 +67,7 @@ class CreateAdopterForm extends React.Component {
           <option value="false">False</option>
         </select> <br/>
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required/>
-        <br/><button class="ui button" type="submit">Submit</button>
+        <br/><br/><button class="ui button" type="submit">Submit</button>
         </form>
       </div>
 

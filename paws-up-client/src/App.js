@@ -1,6 +1,5 @@
 import React from 'react';
 import PetPage from './containers/PetPage.js'
-import GuardianContainer from './containers/GuardianContainer.js'
 import CreateAdopterForm from './containers/CreateAdopterForm.js'
 import About from './components/About.js'
 import CreatePetForm from './containers/CreatePetForm.js'
@@ -51,8 +50,6 @@ class App extends React.Component {
         <Switch>
         <Route exact path ='/' render = {()=>
           <PetPage/>}/>
-            <Route exact path ='/guardians' render = {()=>
-            <GuardianContainer/>}/>
             <Route exact path = '/new-pet' render={() => <CreatePetForm createPet = {this.createPet}/>}/>
             <Route exact path = '/about' render={() => <About /> }/>
             <Route exact path = '/new-adopter' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>

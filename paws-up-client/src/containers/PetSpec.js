@@ -10,11 +10,6 @@ class PetSpec extends React.Component {
     return (
       <div>
       <PetCard pet={this.props.pet} />
-      <div>
-        <img alt="" src ={this.props.pet.guardian.img_url}/>
-        <h3>{this.props.pet.guardian.name}</h3>
-        <h3>{this.props.pet.guardian.location}</h3>
-      </div>
       </div>
     )
   }
