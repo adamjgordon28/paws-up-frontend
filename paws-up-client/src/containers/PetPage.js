@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import NavBar from '../components/NavBar.js'
 import PetContainer from './PetContainer.js'
 import PetSpec from './PetSpec.js'
 import Filter from '../components/Filter.js'
@@ -100,7 +99,6 @@ class PetPage extends React.Component {
   return (
 
     <Fragment>
-    <NavBar />
     <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
 
 
