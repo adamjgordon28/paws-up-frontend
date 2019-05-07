@@ -23,9 +23,9 @@ class App extends React.Component {
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
       body: JSON.stringify(pet)
     })
-    .then(res => res.json())
+    .then(res=>res.json())
     .then(data => {
-      console.log(data)
+     return this.props.history.push("/")
     })
 
   }
@@ -41,6 +41,10 @@ class App extends React.Component {
       allergy: adopter.allergy,
       other_pets: adopter.other_pets,
       img_url: adopter.img_url})
+    })
+    .then(res=>res.json())
+    .then(data => {
+     return this.props.history.push("/adopter-profile")
     })
 
   }
@@ -70,11 +74,11 @@ class App extends React.Component {
         <Switch>
         <Route exact path ='/' render = {()=>
           <PetPage currentUser={this.currentUser}/>}/>
-            <Route exact path = '/new-pet' render={() => <CreatePetForm createPet = {this.createPet}/>}/>
-            <Route exact path = '/about' render={() => <About /> }/>
-            <Route exact path = '/signup' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>
-            <Route exact path = '/login' render={() => <Login />}/>
-            <Route exact path = '/adopter-profile' render={() => <AdopterProfile currentUser={this.state.currentUser} /> }/>
+            <Route exact path = '/new-pet' render={(routeProps) => <CreatePetForm createPet = {this.createPet} {...routeProps}/>}/>
+            <Route exact path = '/about' render={(routeProps) => <About {...routeProps}/> }/>
+            <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
+            <Route exact path = '/login' render={(routeProps) => <Login {...routeProps} />}/>
+            <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} currentUser={this.state.currentUser} /> }/>
         </Switch>
         </header>
       </div>
