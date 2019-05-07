@@ -12,6 +12,10 @@ import './App.css';
 class App extends React.Component {
 
 
+    state = {
+      currentUser: null
+    }
+
   createPet = (pet)=> {
     fetch("http://localhost:4000/api/v1/pets",{
       method: "POST",
@@ -44,19 +48,35 @@ class App extends React.Component {
 
   }
 
+  fetchAndSetAdopters = () => {
+    fetch("http://localhost:4000/api/v1/adopters/5")
+    .then(res => res.json())
+    .then(user => {
+
+      this.setState({
+        currentUser:user
+      })
+    })
+
+  }
+
+  componentDidMount(){
+    this.fetchAndSetAdopters()
+  }
+
   render(){
+    console.log(this.state.currentUser)
     return (
       <div className="App">
       <NavBar/>
         <header className="App-header">
-
         <Switch>
         <Route exact path ='/' render = {()=>
           <PetPage/>}/>
             <Route exact path = '/new-pet' render={() => <CreatePetForm createPet = {this.createPet}/>}/>
             <Route exact path = '/about' render={() => <About /> }/>
             <Route exact path = '/new-adopter' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>
-            <Route exact path = '/profile' render={() => <Profile/> }/>
+            <Route exact path = '/profile' render={() => <Profile currentUser={this.state.currentUser} /> }/>
         </Switch>
         </header>
       </div>

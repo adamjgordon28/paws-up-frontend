@@ -1,4 +1,5 @@
 import React from 'react';
+import {Dropdown} from 'semantic-ui-react'
 
 
 
@@ -41,31 +42,31 @@ class Filter extends React.Component {
     }
   }
 
-
-
   render(){
     return(
       <div>
-        Animal<select onChange={this.handleAnimalChange}>
-        <option label="select"></option>
+        <select onChange={this.handleAnimalChange} className="ui search dropdown" style={{color:"black", margin: ".5em"}}>
+        <option label="Animal"></option>
         <option value="dog">Dog</option>
         <option value="cat">Cat</option>
         <option value="lizard">Lizard</option>
         <option value="pig">Pig</option>
         <option value="hamster">Hamster</option>
         </select>
-        Size<select onChange={this.handleSizeChange}>
-        <option label="select"></option>
+        <select onChange={this.handleSizeChange} className="ui search dropdown" style={{color:"black", margin: ".5em"}} >
+        <option label="Size"></option>
         <option value="Toy">Toy</option>
         <option value="Medium">Medium</option>
         <option value="Large">Large</option>
         </select>
-        Sex<select onChange={this.handleSexChange}>
-        <option label="select"></option>
+        <select onChange={this.handleSexChange} className="ui search dropdown" style={{color:"black", margin: ".5em"}}>
+        <option label="Sex"></option>
         <option value="male">Male</option>
         <option value="female">Female</option>
         </select>
       </div>
+
+
     )
   }
 }
