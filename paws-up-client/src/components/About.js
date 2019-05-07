@@ -5,7 +5,7 @@ const About = () => {
 
  return (
   <div>
-    <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
+    <h1>PawsUp</h1>
 
     <div className="ui message">
     <div className="header">About PawsUp</div>
