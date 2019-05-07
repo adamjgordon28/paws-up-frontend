@@ -71,7 +71,7 @@ class CreatePetForm extends React.Component {
         <div className="field">
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required />
         </div>
-        <button class="ui button" type="submit">Submit</button>
+        <button className="ui button" type="submit">Submit</button>
         </form>
       </div>
 
