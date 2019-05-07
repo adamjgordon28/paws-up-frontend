@@ -1,13 +1,13 @@
 import React from 'react';
 
-class MeetingCard extends React.Component {
+class AdopterMeetingCard extends React.Component {
 
   renderMeetingRows = () => {
     let rowArray = this.props.currentUser.meetings.map((meeting) => {
       return (<tr>
         <td>
           <h4 class="ui image header">
-            <img src={meeting.pet_img_url} class="ui mini rounded image"/>
+            <img alt="" src={meeting.pet_img_url} class="ui mini rounded image"/>
             <div class="content">
               {meeting.pet}
               <div class="sub header">{meeting.location}
@@ -22,7 +22,6 @@ class MeetingCard extends React.Component {
     return rowArray
   }
   render(){
-    console.log(this.props.currentUser.meetings)
     return(
       <table class="ui very basic collapsing celled table">
   <thead>
@@ -39,4 +38,4 @@ class MeetingCard extends React.Component {
   }
 }
 
-export default MeetingCard
+export default AdopterMeetingCard

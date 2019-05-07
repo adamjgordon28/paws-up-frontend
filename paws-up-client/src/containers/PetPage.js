@@ -1,6 +1,6 @@
 import React, {Fragment} from 'react';
 import PetContainer from './PetContainer.js'
-import PetSpec from './PetSpec.js'
+import PetProfile from '../components/PetProfile.js'
 import Filter from '../components/Filter.js'
 
 class PetPage extends React.Component {
@@ -106,7 +106,7 @@ class PetPage extends React.Component {
 
     {this.state.selectedPetId ?
 
-      <PetSpec pet = {this.findPet(this.state.selectedPetId)}/>
+      <PetProfile pet = {this.findPet(this.state.selectedPetId)}/>
 
     : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 

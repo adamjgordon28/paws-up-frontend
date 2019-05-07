@@ -12,7 +12,7 @@ class NavBar extends React.Component {
           <div class="item"><Link to='/new-pet'>Register a Pet for Adoption</Link></div>
           <div class="right item"><Link to='/new-adopter'>Sign Up</Link></div>
           <div class="right item"><Link to='/new-adopter'>Log In</Link></div>
-          <div class="right item"><Link to='/profile'>Profile</Link></div>
+          <div class="right item"><Link to='/adopter-profile'>AdopterProfile</Link></div>
       </div>
     )
   }

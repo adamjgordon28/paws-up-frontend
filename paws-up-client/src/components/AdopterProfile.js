@@ -1,12 +1,12 @@
 import React from 'react';
-import MeetingCard from './MeetingCard.js'
+import AdopterMeetingCard from './AdopterMeetingCard.js'
 
-class Profile extends React.Component{
+class AdopterProfile extends React.Component{
 
     renderAdopterInfoList = () => {
       if (this.props.currentUser){
         return (<div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
-    <img className="ui medium circular image" src={this.props.currentUser.img_url}/>
+    <img alt="" className="ui medium circular image" src={this.props.currentUser.img_url}/>
     <h1>{this.props.currentUser.name}</h1><div className="ui list">
     <div className="item">
       <i className="marker icon"></i>
@@ -15,7 +15,7 @@ class Profile extends React.Component{
       </div>
     </div>
   <div className="item">
-    <i class="home icon"></i>
+    <i className="home icon"></i>
     <div className="content">
       Residence Type: {this.props.currentUser.residence_type}
     </div>
@@ -27,13 +27,13 @@ class Profile extends React.Component{
     </div>
   </div>
   <div className="item">
-    <i class="certificate icon"></i>
+    <i className="certificate icon"></i>
     <div className="content">
       {this.props.currentUser.allergy? "Adopter Has Allergies": "Adopter Has No Allergies"}
     </div>
   </div>
   <div className="item">
-    <i class="paw icon"></i>
+    <i className="paw icon"></i>
     <div className="content">
       {this.props.currentUser.other_pets ? "Adopter Has Other Pets" : "No Other Pets"}
     </div>
@@ -51,10 +51,10 @@ class Profile extends React.Component{
     renderAdopterMeetings = () => {
       if(this.props.currentUser){
         if(this.props.currentUser.meetings.length){
-          return (<MeetingCard currentUser={this.props.currentUser}/>)
+          return (<AdopterMeetingCard currentUser={this.props.currentUser}/>)
         }
         else {
-          return(<div style={{position:"relative", top:"12em"}} class="ui message">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)
+          return(<div style={{position:"relative", top:"12em"}} className="ui message">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)
         }
       }
       else {
@@ -75,4 +75,4 @@ class Profile extends React.Component{
 }
 
 
-export default Profile
+export default AdopterProfile
