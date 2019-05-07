@@ -5,7 +5,7 @@ import About from './components/About.js'
 import CreatePetForm from './containers/CreatePetForm.js'
 import AdopterProfile from './components/AdopterProfile.js'
 import NavBar from './components/NavBar.js'
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import Login from './components/Login.js';
 
 import './App.css';
@@ -42,15 +42,11 @@ class App extends React.Component {
       other_pets: adopter.other_pets,
       img_url: adopter.img_url})
     })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-    })
 
   }
 
   fetchAndSetAdopters = () => {
-    fetch("http://localhost:4000/api/v1/adopters/1")
+    fetch("http://localhost:4000/api/v1/adopters/7")
     .then(res => res.json())
     .then(user => {
 
@@ -62,51 +58,8 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-        const token = localStorage.getItem("token")
 
-        if (token){
-            fetch("http://localhost:3001/api/v1/auto_login", {
-                headers: {
-                    "Authorization": token
-                }
-            })
-            .then(res => res.json())
-            .then((response) => {
-                if (response.errors) {
-                    alert(response.errors)
-                } else {
-                    this.setState({
-                        currentUser: response
-                    })
-                }
-            })
-        }
         this.fetchAndSetAdopters()
-    }
-
-  setCurrentUser = (response) => {
-        this.setState({
-            currentUser: response.user
-        }, () => {
-            localStorage.setItem("token", response.token)
-            this.props.history.push(`/profile`)
-        })
-    }
-
-
-    logOut = () => {
-        localStorage.removeItem("token")
-        this.setState({
-            currentUser: null
-        }, () => {
-            this.props.history.push("/login")
-        })
-    }
-
-    updateUser = (updatedUser) => {
-        this.setState({
-            currentUser: updatedUser
-        })
     }
 
   render(){

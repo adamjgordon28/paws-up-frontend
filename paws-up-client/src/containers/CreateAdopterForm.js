@@ -7,8 +7,6 @@ class CreateAdopterForm extends React.Component {
 
   state = {
     name: "",
-    username: "",
-    password: "",
     age: "",
     location: "",
     residence_type: "",
@@ -26,18 +24,16 @@ class CreateAdopterForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createAdopter(this.state)
-    return <Redirect to="/profile"/>
   }
 
   render(){
+
     return(
       <div>
       <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
 
       <h1>Create an Adopter Account!</h1>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
-        <input placeholder="User Name" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>
-        <input placeholder="Password" onChange={this.handleChange} name="password" type="password" required /> <br/><br/>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input  onChange={this.handleChange}
         placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
