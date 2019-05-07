@@ -8,6 +8,13 @@ class PetProfile extends React.Component {
     meetings: this.props.pet.meetings
   }
 
+  renderAge=(age)=>{
+    if(parseInt(age)<=12){
+      return age+" months old"
+    }else{
+      return Math.floor(parseInt(age)/12)+" years old"
+    }
+  }
 
 
   renderPetInfoList = () => {
@@ -29,7 +36,7 @@ class PetProfile extends React.Component {
   <div className="item">
   <i className="birthday cake icon"></i>
   <div className="content">
-    {this.props.pet.age} Months Old
+    {this.props.pet.age} Months Old 
   </div>
   </div>
   <div className="item">
