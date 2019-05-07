@@ -46,13 +46,12 @@ class CreateAdopterForm extends React.Component {
         </select> <br/>
         <select onChange={this.handleChange} name="residence_type" required >
           <option label="Residence Type?"></option>
-          <option label="Apt">Apt</option>
-          <option value="Townhouse">Townhouse</option>
-          <option value="One-Story-House">One-Story-House</option>
-          <option value="Chateau">Chateau</option>
-          <option value="Dorm Room">Dorm Room!</option>
-          <option value="Bungalow">Bungalow</option>
-          <option value="Yurt">Yurt</option>
+          <option label="apt">Apt</option>
+          <option value="townhouse">Townhouse</option>
+          <option value="one-story-house">One-Story-House</option>
+          <option value="two-story-house">Two-Story-House</option>
+          <option value="mansion">mansion</option>
+          <option value="castle">castle</option>
         </select> <br/>
         <select onChange={this.handleChange} name="other_pets" required>
           <option label="Any Other Pets?"></option>

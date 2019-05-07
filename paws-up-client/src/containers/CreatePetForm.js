@@ -65,9 +65,13 @@ class CreatePetForm extends React.Component {
           <option value="medium">Medium</option>
           <option value="large">Large</option>
         </select><br/>
-        <div className="field">
-        <input onChange={this.handleChange} placeholder="Location" name="location" type="text" required />
-        </div>
+        <select onChange={this.handleChange} name="location" required >
+          <option label="Location"></option>
+          <option label="New York City">New York City</option>
+          <option value="Los Angeles">Los Angeles</option>
+          <option value="Boston">Boston</option>
+          <option value="Chicago">Chicago</option>
+        </select> <br/>
         <div className="field">
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required />
         </div>
