@@ -105,7 +105,7 @@ class PetPage extends React.Component {
 
     {this.state.selectedPetId ?
 
-      <PetProfile currentUser= {this.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
+      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
     : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 

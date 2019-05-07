@@ -8,11 +8,11 @@ class PetProfile extends React.Component {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
-    if (formerMeetingAdopterIds.includes(7)) {
+    if (formerMeetingAdopterIds.includes(11)) {
       return null
     }
     else {
-      return (<CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+      return (<CreateMeetingCard fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
 
       )
     }
@@ -64,7 +64,6 @@ class PetProfile extends React.Component {
       this.setState((prevState)=>{
         return {meetings: [...prevState.meetings, meeting]}
       })
-      console.log(meeting)
     }
 
 

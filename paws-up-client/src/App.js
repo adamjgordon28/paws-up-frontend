@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   fetchAndSetAdopters = () => {
-    fetch("http://localhost:4000/api/v1/adopters/7")
+    fetch("http://localhost:4000/api/v1/adopters/11")
     .then(res => res.json())
     .then(user => {
 
@@ -73,7 +73,7 @@ class App extends React.Component {
         <header className="App-header">
         <Switch>
         <Route exact path ='/' render = {()=>
-          <PetPage currentUser={this.currentUser}/>}/>
+          <PetPage fetchAndSetAdopters= {this.fetchAndSetAdopters} currentUser={this.currentUser}/>}/>
             <Route exact path = '/new-pet' render={(routeProps) => <CreatePetForm createPet = {this.createPet} {...routeProps}/>}/>
             <Route exact path = '/about' render={(routeProps) => <About {...routeProps}/> }/>
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
