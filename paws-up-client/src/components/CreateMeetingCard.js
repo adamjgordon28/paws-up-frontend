@@ -3,11 +3,14 @@ import React from 'react'
 
 class CreateMeetingCard extends React.Component {
 
+  state = {
+    datetime: "",
+    location: ""
+  }
 
-    state = {
-      datetime: "",
-      location: ""
-    }
+
+
+
 
     handleChange = (e) => {
       this.setState({
@@ -27,7 +30,7 @@ class CreateMeetingCard extends React.Component {
     'Content-Type': 'application/json'
                 },
         body: JSON.stringify({
-          adopter_id: 4,
+          adopter_id: 5,
           pet_id: this.props.pet.id,
           datetime: this.state.datetime,
           location: this.state.location
@@ -39,7 +42,6 @@ class CreateMeetingCard extends React.Component {
     }
 
     render(){
-      console.log(this.props)
       return (
 
         <div style={{marginTop: "12em", color: "black"}} class="ui raised card">

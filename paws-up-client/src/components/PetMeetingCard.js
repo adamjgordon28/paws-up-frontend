@@ -22,10 +22,12 @@ class PetMeetingCard extends React.Component {
     return rowArray
   }
   render(){
-    console.log(this.props.pet.meetings)
     return(
-      <table class="ui very basic collapsing celled table">
+      <div className="ui raised card">
+      <table className="ui very basic collapsing celled table">
+
   <thead>
+    <th style={{textAlign:"center"}} colspan="2">Meetings</th>
     <tr><th>Adopter Name</th>
     <th>Date</th>
   </tr></thead>
@@ -35,6 +37,7 @@ class PetMeetingCard extends React.Component {
     {this.renderMeetingRows()}
   </tbody>
 </table>
+</div>
     )
   }
 }

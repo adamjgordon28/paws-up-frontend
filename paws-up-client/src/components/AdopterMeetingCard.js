@@ -4,13 +4,13 @@ class AdopterMeetingCard extends React.Component {
 
   renderMeetingRows = () => {
     let rowArray = this.props.currentUser.meetings.map((meeting) => {
-      return (<tr>
+      return (<tr key={Math.random()}>
         <td>
-          <h4 class="ui image header">
-            <img alt="" src={meeting.pet_img_url} class="ui mini rounded image"/>
-            <div class="content">
+          <h4 className="ui image header">
+            <img alt="" src={meeting.pet_img_url} className="ui mini rounded image"/>
+            <div className="content">
               {meeting.pet}
-              <div class="sub header">{meeting.location}
+              <div className="sub header">{meeting.location}
             </div>
           </div>
         </h4></td>
@@ -23,7 +23,8 @@ class AdopterMeetingCard extends React.Component {
   }
   render(){
     return(
-      <table class="ui very basic collapsing celled table">
+      <div className="ui raised card">
+      <table className="ui very basic collapsing celled table">
   <thead>
     <tr><th>Pet Name</th>
     <th>Date</th>
@@ -34,6 +35,7 @@ class AdopterMeetingCard extends React.Component {
     {this.renderMeetingRows()}
   </tbody>
 </table>
+</div>
     )
   }
 }
