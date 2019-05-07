@@ -6,6 +6,7 @@ import CreatePetForm from './containers/CreatePetForm.js'
 import AdopterProfile from './components/AdopterProfile.js'
 import NavBar from './components/NavBar.js'
 import {Route, Switch} from 'react-router-dom';
+import Login from './components/Login.js';
 
 import './App.css';
 
@@ -61,8 +62,52 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    this.fetchAndSetAdopters()
-  }
+        const token = localStorage.getItem("token")
+
+        if (token){
+            fetch("http://localhost:3001/api/v1/auto_login", {
+                headers: {
+                    "Authorization": token
+                }
+            })
+            .then(res => res.json())
+            .then((response) => {
+                if (response.errors) {
+                    alert(response.errors)
+                } else {
+                    this.setState({
+                        currentUser: response
+                    })
+                }
+            })
+        }
+        this.fetchAndSetAdopters()
+    }
+
+  setCurrentUser = (response) => {
+        this.setState({
+            currentUser: response.user
+        }, () => {
+            localStorage.setItem("token", response.token)
+            this.props.history.push(`/profile`)
+        })
+    }
+
+
+    logOut = () => {
+        localStorage.removeItem("token")
+        this.setState({
+            currentUser: null
+        }, () => {
+            this.props.history.push("/login")
+        })
+    }
+
+    updateUser = (updatedUser) => {
+        this.setState({
+            currentUser: updatedUser
+        })
+    }
 
   render(){
     return (
@@ -74,7 +119,8 @@ class App extends React.Component {
           <PetPage currentUser={this.currentUser}/>}/>
             <Route exact path = '/new-pet' render={() => <CreatePetForm createPet = {this.createPet}/>}/>
             <Route exact path = '/about' render={() => <About /> }/>
-            <Route exact path = '/new-adopter' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>
+            <Route exact path = '/signup' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>
+            <Route exact path = '/login' render={() => <Login />}/>
             <Route exact path = '/adopter-profile' render={() => <AdopterProfile currentUser={this.state.currentUser} /> }/>
         </Switch>
         </header>

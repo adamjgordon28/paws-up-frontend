@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom'
+
 
 
 class CreateAdopterForm extends React.Component {
 
   state = {
     name: "",
+    username: "",
+    password: "",
     age: "",
     location: "",
     residence_type: "",
@@ -17,14 +21,12 @@ class CreateAdopterForm extends React.Component {
     this.setState({
       [e.target.name]: e.target.value
     })
-
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createAdopter(this.state)
-    console.log(this.state)
-
+    return <Redirect to="/profile"/>
   }
 
   render(){
@@ -34,6 +36,8 @@ class CreateAdopterForm extends React.Component {
 
       <h1>Create an Adopter Account!</h1>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
+        <input placeholder="User Name" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>
+        <input placeholder="Password" onChange={this.handleChange} name="password" type="password" required /> <br/><br/>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input  onChange={this.handleChange}
         placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
