@@ -1,4 +1,5 @@
 import React from 'react';
+import MeetingCard from './MeetingCard.js'
 
 class Profile extends React.Component{
 
@@ -49,8 +50,8 @@ class Profile extends React.Component{
 
     renderAdopterMeetings = () => {
       if(this.props.currentUser){
-        if(this.props.currentUser.meetings){
-          return (<div>What's Up?</div>)
+        if(this.props.currentUser.meetings.length){
+          return (<MeetingCard currentUser={this.props.currentUser}/>)
         }
         else {
           return(<div style={{position:"relative", top:"12em"}} class="ui message">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)

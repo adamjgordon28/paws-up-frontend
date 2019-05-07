@@ -49,9 +49,10 @@ class App extends React.Component {
   }
 
   fetchAndSetAdopters = () => {
-    fetch("http://localhost:4000/api/v1/adopters/5")
+    fetch("http://localhost:4000/api/v1/adopters/1")
     .then(res => res.json())
     .then(user => {
+      console.log(user)
 
       this.setState({
         currentUser:user
