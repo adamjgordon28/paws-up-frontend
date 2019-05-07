@@ -39,10 +39,10 @@ class CreateAdopterForm extends React.Component {
         placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
         <select onChange={this.handleChange} name="location" required >
           <option label="Location"></option>
-          <option label="New York City">Apt</option>
-          <option value="Los Angeles">Townhouse</option>
-          <option value="Boston">Igloo</option>
-          <option value="Chicago">Chateau</option>
+          <option label="New York City">New York City</option>
+          <option value="Los Angeles">Los Angeles</option>
+          <option value="Boston">Boston</option>
+          <option value="Chicago">Chicago</option>
         </select> <br/>
         <select onChange={this.handleChange} name="residence_type" required >
           <option label="Residence Type?"></option>
