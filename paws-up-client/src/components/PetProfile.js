@@ -4,9 +4,20 @@ import CreateMeetingCard from "./CreateMeetingCard.js"
 
 class PetProfile extends React.Component {
 
-  state =  {
-    meetings: this.props.pet.meetings
+  conditionallyRenderMeetingPrompt = () => {
+    let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
+    return  meeting.adopter_id
+    })
+    if (formerMeetingAdopterIds.includes(5)) {
+      return null
+    }
+    else {
+      return (<CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+
+      )
+    }
   }
+
 
 
 
@@ -21,7 +32,7 @@ class PetProfile extends React.Component {
     </div>
   </div>
   <div className="item">
-  <i class="home icon"></i>
+  <i className="home icon"></i>
   <div className="content">
     Residence Type: {this.props.pet.residence_type}
   </div>
@@ -33,13 +44,13 @@ class PetProfile extends React.Component {
   </div>
   </div>
   <div className="item">
-  <i class="certificate icon"></i>
+  <i className="certificate icon"></i>
   <div className="content">
     {this.props.pet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
   </div>
   </div>
   <div className="item">
-  {this.props.pet.sex === "male" ? <i class="mars icon"></i> : <i class="venus icon"></i>}
+  {this.props.pet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
   <div className="content">
     {this.props.pet.sex === "male"  ? "Male" : "Female"}
   </div>
@@ -60,10 +71,10 @@ class PetProfile extends React.Component {
 
   renderPetMeetings = () => {
       if(this.props.pet.meetings.length){
-        return (<PetMeetingCard pet={this.props.pet} meetings = {this.state.meetings} />)
+        return (<PetMeetingCard pet={this.props.pet}/>)
       }
       else {
-        return(<div style={{position:"relative", top:"12em"}} class="ui message">This Pet Has No Meetings Yet! Set One Up!</div>)
+        return(<div style={{position:"relative", top:"5em", margin: "3em"}} className="ui message">This Pet Has No Meetings Yet! Set One Up!</div>)
       }
   }
 
@@ -72,7 +83,8 @@ class PetProfile extends React.Component {
 
       <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
           <div className="column">{this.renderPetMeetings()}
-            <CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} renderPetMeetings={this.renderPetMeetings} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+
+            {this.conditionallyRenderMeetingPrompt()}
           </div>
           </div>
         </div>
