@@ -99,14 +99,13 @@ class PetPage extends React.Component {
   return (
 
     <Fragment>
-    <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
-
+    <h1>PawsUp</h1>
 
 
 
     {this.state.selectedPetId ?
 
-      <PetProfile pet = {this.findPet(this.state.selectedPetId)}/>
+      <PetProfile currentUser= {this.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
     : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 

@@ -1,7 +1,14 @@
 import React from 'react';
 import PetMeetingCard from "./PetMeetingCard.js"
+import CreateMeetingCard from "./CreateMeetingCard.js"
 
 class PetProfile extends React.Component {
+
+  state =  {
+    meetings: this.props.pet.meetings
+  }
+
+
 
   renderPetInfoList = () => {
       return (<div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
@@ -42,10 +49,18 @@ class PetProfile extends React.Component {
   </div>)
   }
 
+    addPetMeeting = (meeting) => {
+      this.setState((prevState)=>{
+        return {meetings: [...prevState.meetings, meeting]}
+      })
+      console.log(meeting)
+    }
+
+
 
   renderPetMeetings = () => {
       if(this.props.pet.meetings.length){
-        return (<PetMeetingCard pet={this.props.pet}/>)
+        return (<PetMeetingCard pet={this.props.pet} meetings = {this.state.meetings} />)
       }
       else {
         return(<div style={{position:"relative", top:"12em"}} class="ui message">This Pet Has No Meetings Yet! Set One Up!</div>)
@@ -56,7 +71,9 @@ class PetProfile extends React.Component {
     return(
 
       <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
-          <div className="column">{this.renderPetMeetings()}</div>
+          <div className="column">{this.renderPetMeetings()}
+            <CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} renderPetMeetings={this.renderPetMeetings} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+          </div>
           </div>
         </div>
     )

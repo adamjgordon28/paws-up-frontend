@@ -71,7 +71,7 @@ class App extends React.Component {
         <header className="App-header">
         <Switch>
         <Route exact path ='/' render = {()=>
-          <PetPage/>}/>
+          <PetPage currentUser={this.currentUser}/>}/>
             <Route exact path = '/new-pet' render={() => <CreatePetForm createPet = {this.createPet}/>}/>
             <Route exact path = '/about' render={() => <About /> }/>
             <Route exact path = '/new-adopter' render={() => <CreateAdopterForm createAdopter = {this.createAdopter}/>}/>
