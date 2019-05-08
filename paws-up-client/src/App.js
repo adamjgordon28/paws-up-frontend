@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   fetchAndSetAdopters = () => {
-    fetch("http://localhost:4000/api/v1/adopters/21")
+    fetch("http://localhost:4000/api/v1/adopters/16")
     .then(res => res.json())
     .then(user => {
 
@@ -84,7 +84,7 @@ class App extends React.Component {
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
             <Route exact path = '/login' render={(routeProps) => <Login {...routeProps} />}/>
             <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} currentUser={this.state.currentUser} /> }/>
-        
+
         </Switch>
         </header>
       </div>

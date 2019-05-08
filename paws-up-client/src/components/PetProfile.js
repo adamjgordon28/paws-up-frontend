@@ -8,7 +8,7 @@ class PetProfile extends React.Component {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
-    if (formerMeetingAdopterIds.includes(21)) {
+    if (formerMeetingAdopterIds.includes(16)) {
       return null
     }
     else {
@@ -81,7 +81,7 @@ class PetProfile extends React.Component {
         return (<PetMeetingCard pet={this.props.pet}/>)
       }
       else {
-        return(<div style={{position:"relative", top:"5em", margin: "3em"}} className="ui message">This Pet Has No Meetings Yet! Set One Up!</div>)
+        return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
       }
   }
 
@@ -89,7 +89,8 @@ class PetProfile extends React.Component {
     return(
 
       <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
-          <div className="column">{this.renderPetMeetings()}
+          <div className="column">
+          {this.renderPetMeetings()}
 
             {this.conditionallyRenderMeetingPrompt()}
           </div>

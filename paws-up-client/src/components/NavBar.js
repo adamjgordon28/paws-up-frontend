@@ -7,7 +7,6 @@ class NavBar extends React.Component {
   render(){
     return(
       <div className="ui menu" style={{textAlign: "left"}}>
-          <div className="item"><a href="http://localhost:3000/">Home</a></div>
           <div className="item"><Link to="/about">About</Link></div>
           <div className="item"><Link to='/new-pet'>Register a Pet for Adoption</Link></div>
           <div className="right item"><Link to='/signup'>Sign Up</Link></div>

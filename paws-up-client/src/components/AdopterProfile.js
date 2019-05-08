@@ -54,7 +54,7 @@ class AdopterProfile extends React.Component{
           return (<AdopterMeetingCard currentUser={this.props.currentUser}/>)
         }
         else {
-          return(<div style={{position:"relative", top:"12em"}} className="ui message">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)
+          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)
         }
       }
       else {
