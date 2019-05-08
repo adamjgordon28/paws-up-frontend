@@ -4,7 +4,7 @@ import CreateMeetingCard from "./CreateMeetingCard.js"
 
 class PetProfile extends React.Component {
 
-  
+
 
   conditionallyRenderMeetingPrompt = () => {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
@@ -21,7 +21,7 @@ class PetProfile extends React.Component {
   }
 
   renderAge=(age)=>{
-    if(parseInt(age)<=12){
+    if(parseInt(age)<12){
       return age+" months old"
     }else if(age%12){
       return Math.floor(parseInt(age)/12)+" years and " +(age % 12) +" Months old"
@@ -39,12 +39,6 @@ class PetProfile extends React.Component {
     <div className="content">
       {this.props.pet.location}
     </div>
-  </div>
-  <div className="item">
-  <i className="home icon"></i>
-  <div className="content">
-    Residence Type: {this.props.pet.residence_type}
-  </div>
   </div>
   <div className="item">
   <i className="birthday cake icon"></i>
