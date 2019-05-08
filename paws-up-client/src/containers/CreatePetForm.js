@@ -29,7 +29,7 @@ class CreatePetForm extends React.Component {
   render(){
     return(
       <div>
-      <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
+
 
       <h1>Create a pet!</h1>
         <form className="ui form" style = {{width: "25em"}} onSubmit ={this.handleSubmit}>

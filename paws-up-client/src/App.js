@@ -5,6 +5,8 @@ import About from './components/About.js'
 import CreatePetForm from './containers/CreatePetForm.js'
 import AdopterProfile from './components/AdopterProfile.js'
 import NavBar from './components/NavBar.js'
+import Header from './components/Header.js'
+
 import {Route, Switch, Redirect} from 'react-router-dom';
 import Login from './components/Login.js';
 
@@ -71,6 +73,7 @@ class App extends React.Component {
       <div className="App">
       <NavBar/>
         <header className="App-header">
+        <Header/>
         <Switch>
         <Route exact path ='/' render = {()=>
           <PetPage fetchAndSetAdopters= {this.fetchAndSetAdopters} currentUser={this.currentUser}/>}/>
