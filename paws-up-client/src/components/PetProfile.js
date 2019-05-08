@@ -4,6 +4,8 @@ import CreateMeetingCard from "./CreateMeetingCard.js"
 
 class PetProfile extends React.Component {
 
+  
+
   conditionallyRenderMeetingPrompt = () => {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
@@ -84,6 +86,8 @@ class PetProfile extends React.Component {
         return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
       }
   }
+
+
 
   render(){
     return(
