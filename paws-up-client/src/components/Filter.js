@@ -55,7 +55,7 @@ class Filter extends React.Component {
         </select>
         <select onChange={this.handleSizeChange} className="ui search dropdown" style={{color:"black", margin: ".5em"}} >
         <option label="Size"></option>
-        <option value="toy">Toy</option>
+        <option value="small">Small</option>
         <option value="medium">Medium</option>
         <option value="large">Large</option>
         </select>

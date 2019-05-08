@@ -30,7 +30,7 @@ class CreateMeetingCard extends React.Component {
     'Content-Type': 'application/json'
                 },
         body: JSON.stringify({
-          adopter_id: 11,
+          adopter_id: 21,
           pet_id: this.props.pet.id,
           datetime: this.state.datetime,
           location: this.state.location
@@ -45,7 +45,7 @@ class CreateMeetingCard extends React.Component {
     render(){
       return (
 
-        <div style={{marginTop: "12em", color: "black"}} class="ui raised card">
+        <div style={{marginTop: "12em", marginLeft: "2.5em", color: "black"}} class="ui raised card">
         <input onChange={this.handleChange} required type="date" name="datetime"/>
         <select onChange={this.handleChange} name="location" required >
           <option label="Location"></option>

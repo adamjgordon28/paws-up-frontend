@@ -50,7 +50,7 @@ class App extends React.Component {
   }
 
   fetchAndSetAdopters = () => {
-    fetch("http://localhost:4000/api/v1/adopters/11")
+    fetch("http://localhost:4000/api/v1/adopters/21")
     .then(res => res.json())
     .then(user => {
 

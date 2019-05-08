@@ -8,7 +8,7 @@ class PetProfile extends React.Component {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
-    if (formerMeetingAdopterIds.includes(11)) {
+    if (formerMeetingAdopterIds.includes(21)) {
       return null
     }
     else {

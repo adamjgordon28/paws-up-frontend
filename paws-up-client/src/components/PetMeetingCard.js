@@ -23,11 +23,11 @@ class PetMeetingCard extends React.Component {
   }
   render(){
     return(
-      <div className="ui raised card">
+      <div className="ui raised card" style={{marginTop: "3em", padding: "0.25em"}}>
       <table className="ui very basic collapsing celled table">
 
   <thead>
-    <th style={{textAlign:"center"}} colspan="2">Meetings</th>
+    <th style={{textAlign:"center", background: "darkblue", color: "white"}} colspan="2">Meetings</th>
     <tr><th>Adopter Name</th>
     <th>Date</th>
   </tr></thead>
