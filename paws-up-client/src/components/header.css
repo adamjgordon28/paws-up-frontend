@@ -16,6 +16,10 @@
     white-space: pre;
   }
 
-  h1.logo:hover {
-    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 20px rgba(255,255,255,1) , 0 0 30px rgba(255,255,255,1) , 0 0 40px #FFD700 , 0 0 70px #FFD700 , 0 0 80px #FFD700 , 0 0 100px #FFD700 ;
+  .logo:hover {
+    text-shadow: 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 10px rgba(255,255,255,1) , 0 0 40px #FFD700 , 0 0 70px #FFD700 , 0 0 80px #FFD700 , 0 0 100px #FFD700 ;
+  }
+
+  a{
+    color: #F08080;
   }

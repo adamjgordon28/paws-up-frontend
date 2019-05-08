@@ -6,6 +6,8 @@ import CreatePetForm from './containers/CreatePetForm.js'
 import AdopterProfile from './components/AdopterProfile.js'
 import NavBar from './components/NavBar.js'
 import Header from './components/Header.js'
+import PetProfile from './components/PetProfile.js'
+
 
 import {Route, Switch, Redirect} from 'react-router-dom';
 import Login from './components/Login.js';
@@ -82,6 +84,7 @@ class App extends React.Component {
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
             <Route exact path = '/login' render={(routeProps) => <Login {...routeProps} />}/>
             <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} currentUser={this.state.currentUser} /> }/>
+        
         </Switch>
         </header>
       </div>
