@@ -2,7 +2,7 @@ import React from 'react';
 
 const PetCard = (props) => {
   const renderAge=(age)=>{
-    if(parseInt(age)<=12){
+    if(parseInt(age)<12){
       return age+" months old"
     }else{
       return Math.floor(parseInt(age)/12)+" years old"

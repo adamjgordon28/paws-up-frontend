@@ -4,7 +4,7 @@ import CreateMeetingCard from "./CreateMeetingCard.js"
 
 class PetProfile extends React.Component {
 
-  
+
 
   conditionallyRenderMeetingPrompt = () => {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
@@ -41,10 +41,7 @@ class PetProfile extends React.Component {
     </div>
   </div>
   <div className="item">
-  <i className="home icon"></i>
-  <div className="content">
-    Residence Type: {this.props.pet.residence_type}
-  </div>
+
   </div>
   <div className="item">
   <i className="birthday cake icon"></i>
