@@ -30,7 +30,6 @@ class CreateAdopterForm extends React.Component {
 
     return(
       <div>
-      <h1>PawsUp</h1><img alt="" src="http://icons.iconarchive.com/icons/iconsmind/outline/256/Paw-icon.png"/>
 
       <h1>Create an Adopter Account!</h1>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>

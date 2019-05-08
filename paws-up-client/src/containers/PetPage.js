@@ -99,9 +99,6 @@ class PetPage extends React.Component {
   return (
 
     <Fragment>
-    <h1>PawsUp</h1>
-
-
 
     {this.state.selectedPetId ?
 
