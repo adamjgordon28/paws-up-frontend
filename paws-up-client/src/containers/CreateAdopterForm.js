@@ -7,6 +7,8 @@ class CreateAdopterForm extends React.Component {
 
   state = {
     name: "",
+    username: "",
+    password: "",
     age: "",
     location: "",
     residence_type: "",
@@ -34,6 +36,8 @@ class CreateAdopterForm extends React.Component {
       <h1>Create an Adopter Account!</h1>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
+        <input placeholder="Username" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>
+        <input placeholder="Password" onChange={this.handleChange} name="password" type="password" required /> <br/><br/>
         <input  onChange={this.handleChange}
         placeholder="Age" min="18" name="age" type="number" required/> <br/><br/>
         <select onChange={this.handleChange} name="location" required >
