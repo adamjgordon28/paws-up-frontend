@@ -26,7 +26,7 @@ class AdopterMeetingCard extends React.Component {
       <div className="ui raised card" style={{marginTop: "3em", padding: "0.25em"}}>
       <table className="ui very basic collapsing celled table">
   <thead>
-  <th style={{textAlign:"center", background: "darkblue", color: "white"}} colspan="2">Meetings</th>
+  <th style={{textAlign:"center", background: "darkblue", color: "white"}} colSpan="2">Meetings</th>
     <tr><th>Pet Name</th>
     <th>Date</th>
   </tr></thead>

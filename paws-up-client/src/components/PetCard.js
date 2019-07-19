@@ -26,6 +26,9 @@ const PetCard = (props) => {
     case "hamster":
       animalType = "🐹";
       break;
+      case "rabbit":
+      animalType = "🐰";
+      break;
     default:
       animalType = <div />;
   }

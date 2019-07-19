@@ -1,5 +1,6 @@
 import React from 'react';
-import AdopterMeetingCard from './AdopterMeetingCard.js'
+import AdopterMeetingCard from './AdopterMeetingCard.js';
+import { Link } from 'react-router-dom';
 
 class AdopterProfile extends React.Component{
 
@@ -54,7 +55,7 @@ class AdopterProfile extends React.Component{
           return (<AdopterMeetingCard currentUser={this.props.currentUser}/>)
         }
         else {
-          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">This Adopter Has No Pet Meetings Yet! Go See Some Pets!</div>)
+          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go See Some Pets!</span></Link></div>)
         }
       }
       else {

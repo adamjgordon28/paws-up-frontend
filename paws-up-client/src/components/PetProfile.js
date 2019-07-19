@@ -10,12 +10,11 @@ class PetProfile extends React.Component {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
-    if (formerMeetingAdopterIds.includes(16)) {
+    if (this.props.currentUser && formerMeetingAdopterIds.includes(this.props.currentUser.id)) {
       return null
     }
     else {
-      return (<CreateMeetingCard fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
-
+      return (<CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
       )
     }
   }
@@ -31,7 +30,7 @@ class PetProfile extends React.Component {
 
 
   renderPetInfoList = () => {
-      return (<div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
+      return (<div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em"}}>
   <img alt="" className="ui medium circular image" src={this.props.pet.img_url}/>
   <h1>{this.props.pet.name}</h1><div className="ui list">
   <div className="item">
@@ -85,7 +84,6 @@ class PetProfile extends React.Component {
 
   render(){
     return(
-
       <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
           <div className="column">
           {this.renderPetMeetings()}

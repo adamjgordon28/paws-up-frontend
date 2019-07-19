@@ -22,7 +22,8 @@ class Login extends React.Component {
         alert(json.errors)
       }
       else {
-      this.props.setCurrentUser(json)
+      localStorage.setItem("token", json.token)
+      this.props.setCurrentUser(json.user)
       }
     })
   }
@@ -43,7 +44,7 @@ class Login extends React.Component {
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
         <input placeholder="User Name" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>
         <input placeholder="Password" onChange={this.handleChange} name="password" type="password" required /> <br/><br/>
-        <button class="ui button" type="submit">Submit</button>
+        <button className="ui button" type="submit">Submit</button>
         </form>
       </div>
 
