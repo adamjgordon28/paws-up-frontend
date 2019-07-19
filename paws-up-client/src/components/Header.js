@@ -7,9 +7,9 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <h1 style={{fontSize: '4em'}} className="text-center" className="logo"><a href="http://localhost:3000/">
+        <h1 style={{fontSize: '4em'}} className="text-center" className="logo">
         PawsUp🐾
-        </a></h1>
+        </h1>
       </header>
     );
   }

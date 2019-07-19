@@ -8,6 +8,7 @@ import NavBar from './components/NavBar.js'
 import Header from './components/Header.js'
 import PetProfile from './components/PetProfile.js'
 import Logout from './components/Logout.js'
+import history from './history.js'
 
 
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -48,6 +49,10 @@ class App extends React.Component {
           this.setCurrentUser(user)
         }
       })
+    }
+
+    else {
+      this.props.history.push("/login")
     }
   }
 
@@ -106,8 +111,8 @@ class App extends React.Component {
         <header className="App-header">
         <Header/>
         <Switch>
-        <Route exact path ='/' render = {()=>
-          <PetPage currentUser={this.state.currentUser}/>}/>
+        <Route exact path ='/' render = {(routeProps)=>
+          <PetPage {...routeProps} currentUser={this.state.currentUser}/>} />
             <Route exact path = '/new-pet' render={(routeProps) => <CreatePetForm createPet = {this.createPet} {...routeProps}/>}/>
             <Route exact path = '/about' render={(routeProps) => <About {...routeProps}/> }/>
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
