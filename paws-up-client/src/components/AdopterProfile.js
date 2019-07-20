@@ -3,12 +3,23 @@ import AdopterMeetingCard from './AdopterMeetingCard.js';
 import { Link } from 'react-router-dom';
 
 class AdopterProfile extends React.Component{
+    capitalize = (s) => {
+   if (typeof s !== 'string'){ return ''}
+   else{
+     let splitStr = s.split(' ');
+    for (let i = 0; i < splitStr.length; i++) {
+        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+    }
+    return splitStr.join(' '); }
+  }
 
     renderAdopterInfoList = () => {
       if (this.props.currentUser){
-        return (<div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
+        return (
+          <div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
+        <h1>{this.capitalize(this.props.currentUser.name)}'s Page</h1>
     <img alt="" className="ui medium circular image" src={this.props.currentUser.img_url}/>
-    <h1>{this.props.currentUser.name}</h1><div className="ui list">
+    <div className="ui list">
     <div className="item">
       <i className="marker icon"></i>
       <div className="content">
@@ -52,10 +63,17 @@ class AdopterProfile extends React.Component{
     renderAdopterMeetings = () => {
       if(this.props.currentUser){
         if(this.props.currentUser.meetings.length){
-          return (<AdopterMeetingCard currentUser={this.props.currentUser}/>)
+          return (
+            <div>
+            <AdopterMeetingCard currentUser={this.props.currentUser}/>
+            <h4>  <Link to="/"> Do you wnat to see more pets? </Link></h4>
+            </div>
+          )
         }
         else {
-          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go See Some Pets!</span></Link></div>)
+          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">
+          You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go See Some Pets!</span></Link>
+          </div>)
         }
       }
       else {
@@ -66,7 +84,8 @@ class AdopterProfile extends React.Component{
     render(){
       return(
 
-        <div><div className="ui two column very relaxed grid"><div className="column">{this.renderAdopterInfoList()}</div>
+        <div>
+            <div className="ui two column very relaxed grid"><div className="column">{this.renderAdopterInfoList()}</div>
             <div className="column">{this.renderAdopterMeetings()}</div>
             </div>
           </div>

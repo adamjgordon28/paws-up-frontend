@@ -23,3 +23,18 @@
   a{
     color: #F08080;
   }
+
+  h3.logo{
+    font-family: 'Gorditas', cursive;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: none;
+    color: #F08080;
+    text-decoration: normal;
+    text-align: center;
+    -o-text-overflow: clip;
+    text-overflow: clip;
+    white-space: pre;
+  }
