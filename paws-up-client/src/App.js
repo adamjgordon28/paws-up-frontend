@@ -18,7 +18,6 @@ import './App.css';
 
 class App extends React.Component {
 
-
     state = {
       currentUser: null
     }
@@ -70,18 +69,21 @@ class App extends React.Component {
   }
 
   createAdopter = (adopter)=> {
+    console.log(adopter);
     fetch("http://localhost:4000/api/v1/adopters",{
       method: "POST",
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
-      body: JSON.stringify({name: adopter.name, username: adopter.username, password: adopter.password,
-      age: adopter.age,
-      location: adopter.location,
-      residence_type: adopter.residence_type,
-      allergy: adopter.allergy,
-      other_pets: adopter.other_pets,
-      img_url: adopter.img_url})
+      body: JSON.stringify({name: adopter.name,
+        username: adopter.username,
+        password: adopter.password,
+        age: adopter.age,
+        location: adopter.location,
+        residence_type: adopter.residence_type,
+        allergy: adopter.allergy,
+        other_pets: adopter.other_pets,
+        img_url: adopter.img_url})
     })
-    .then(res=>res.json())
+    .then(res=>{console.log(res); res.json()})
     .then(response => {
       if (response.error){
             alert(response.error)
@@ -105,11 +107,12 @@ class App extends React.Component {
 
 
   render(){
+    console.log(this.props.history.location.pathname==="/"? true:false);
     return (
       <div className="App">
-      <NavBar currentUser={this.state.currentUser}/>
+      <NavBar currentUser={this.state.currentUser} location={this.props.location}/>
         <header className="App-header">
-        <Header/>
+        {this.props.history.location.pathname==="/"? <Header/>:" "}
         <Switch>
         <Route exact path ='/' render = {(routeProps)=>
           <PetPage {...routeProps} currentUser={this.state.currentUser}/>} />

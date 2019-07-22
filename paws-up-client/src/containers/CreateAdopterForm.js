@@ -67,7 +67,7 @@ class CreateAdopterForm extends React.Component {
           <option value="false">False</option>
         </select> <br/>
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required/>
-        <br/><br/><button class="ui button" type="submit">Submit</button>
+        <br/><br/><button className="ui button" type="submit">Submit</button>
         </form>
       </div>
 
