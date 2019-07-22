@@ -69,7 +69,6 @@ class App extends React.Component {
   }
 
   createAdopter = (adopter)=> {
-    console.log(adopter);
     fetch("http://localhost:4000/api/v1/adopters",{
       method: "POST",
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
@@ -83,7 +82,7 @@ class App extends React.Component {
         other_pets: adopter.other_pets,
         img_url: adopter.img_url})
     })
-    .then(res=>{console.log(res); res.json()})
+    .then(res=>res.json())
     .then(response => {
       if (response.error){
             alert(response.error)
@@ -107,7 +106,6 @@ class App extends React.Component {
 
 
   render(){
-    console.log(this.props.history.location.pathname==="/"? true:false);
     return (
       <div className="App">
       <NavBar currentUser={this.state.currentUser} location={this.props.location}/>
@@ -119,8 +117,8 @@ class App extends React.Component {
             <Route exact path = '/new-pet' render={(routeProps) => <CreatePetForm createPet = {this.createPet} {...routeProps}/>}/>
             <Route exact path = '/about' render={(routeProps) => <About {...routeProps}/> }/>
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
-            <Route exact path = '/login' render={(routeProps) => <Login {...routeProps} setCurrentUser={this.setCurrentUser}/>}/>
-            <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} currentUser={this.state.currentUser} /> }/>
+            <Route exact path = '/login' render={(routeProps) => <Login {...routeProps}/>}/>
+            <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} /> }/>
             <Route exact path ='/logout' render = {(routeProps) => <Logout logOut = {this.logOut} {...routeProps}/>}/>
 
         </Switch>

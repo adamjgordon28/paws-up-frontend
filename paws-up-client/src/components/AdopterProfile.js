@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import AdopterMeetingCard from './AdopterMeetingCard.js';
 import { Link } from 'react-router-dom';
 
@@ -94,5 +95,11 @@ class AdopterProfile extends React.Component{
 
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser
+  }
+}
 
-export default AdopterProfile
+
+export default connect(mapStateToProps)(AdopterProfile)

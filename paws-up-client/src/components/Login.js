@@ -1,6 +1,6 @@
-import React from 'react'
-import { Form, Button } from 'semantic-ui-react'
-
+import React from 'react';
+import { connect } from 'react-redux';
+import { Form, Button } from 'semantic-ui-react';
 
 class Login extends React.Component {
 
@@ -24,6 +24,7 @@ class Login extends React.Component {
       else {
       localStorage.setItem("token", json.token)
       this.props.setCurrentUser(json.user)
+      this.props.history.push('/adopter-profile')
       }
     })
   }
@@ -53,5 +54,13 @@ class Login extends React.Component {
 
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentUser: (user) => {
+      dispatch({type: "SET_CURRENT_USER", payload: user})
+    }
+  }
+}
 
-export default Login
+
+export default connect(null, mapDispatchToProps)(Login)
