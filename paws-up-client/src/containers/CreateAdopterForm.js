@@ -50,8 +50,9 @@ class CreateAdopterForm extends React.Component {
           }
       else {
       localStorage.setItem("token", response.token)
-      this.setCurrentUser(response.adopter)
+      this.props.setCurrentUser(response.adopter)
       }
+      this.props.history.push("/adopter-profile")
     })
 
   }

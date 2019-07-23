@@ -12,6 +12,22 @@ const defaultState = {
       return {...state, pets: action.payload}
       case 'SET_CURRENT_PET':
       return {...state, currentPet: action.payload}
+      case 'ADD_MEETING_TO_CURRENT_USER':
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          meetings: [...state.currentUser.meetings, action.payload]
+        }
+      }
+      case 'ADD_MEETING_TO_CURRENT_PET':
+      return {
+        ...state,
+        currentPet: {
+          ...state.currentPet,
+          meetings: [...state.currentPet.meetings, action.payload]
+        }
+      }
       default:
       return state
     }

@@ -13,6 +13,7 @@ class CreatePetForm extends React.Component {
     img_url: ""
   }
 
+
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value

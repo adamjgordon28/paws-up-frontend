@@ -35,12 +35,21 @@ class CreateMeetingCard extends React.Component {
           location: this.state.location
         })
       })
+      .then(res=>res.json())
+      .then(meeting => {
+        meeting.pet_img_url = this.props.currentPet.img_url
+        meeting.pet = this.props.currentPet.name
+        meeting.adopter_img_url = this.props.currentUser.img_url
+        meeting.adopter = this.props.currentUser.name
 
-      
+        this.props.addMeetingToCurrentUser(meeting)
+        this.props.addMeetingToCurrentPet(meeting)
+      })
 
     }
 
     render(){
+      console.log(this.props.currentPet)
       return (
 
         <div style={{marginTop: "12em", marginLeft: "3em", color: "black", padding: ".25em"}} className="ui raised card">
@@ -59,6 +68,17 @@ class CreateMeetingCard extends React.Component {
     }
 }
 
+function mapDispatchToProps(dispatch) {
+  return {
+    addMeetingToCurrentUser: (meeting) => {
+      dispatch({type: "ADD_MEETING_TO_CURRENT_USER", payload: meeting})
+    },
+    addMeetingToCurrentPet: (meeting) => {
+      dispatch({type: "ADD_MEETING_TO_CURRENT_PET", payload: meeting})
+    }
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
     currentUser: state.currentUser,
@@ -67,4 +87,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect (mapStateToProps)(CreateMeetingCard)
+export default connect (mapStateToProps, mapDispatchToProps)(CreateMeetingCard)

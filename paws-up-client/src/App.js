@@ -61,7 +61,12 @@ class App extends Component {
     })
     .then(res=>res.json())
     .then(data => {
-     return this.props.history.push("/")
+      if (data.errors){
+        alert(data.errors)
+      }
+      else {
+     return this.props.history.push("/pets")
+     }
     })
 
   }
