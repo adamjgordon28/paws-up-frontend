@@ -7,7 +7,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <Link to="/">
+        <Link to="/pets">
         <h1 style={{fontSize: '4em'}} className="logo">
         PawsUp🐾
         </h1>

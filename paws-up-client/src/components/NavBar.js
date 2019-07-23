@@ -8,7 +8,7 @@ class NavBar extends React.Component {
   render(){
     return(
       <div className="ui menu" style={{textAlign: "left"}}>
-          <div className="item"><Link to="/">Pets!</Link></div>
+          <div className="item"><Link to="/pets">Pets!</Link></div>
           <div className="item"><Link to="/about">About</Link></div>
           <div className="item"><Link to='/new-pet'>Register a Pet for Adoption</Link></div>
           {this.props.location.pathname!=="/"? <div className="center item"><h3 className="logo">PawsUp</h3> </div> :""}

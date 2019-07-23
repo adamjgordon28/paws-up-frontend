@@ -1,18 +1,32 @@
-import React from 'react';
-import PetMeetingCard from "./PetMeetingCard.js"
-import CreateMeetingCard from "./CreateMeetingCard.js"
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PetMeetingCard from "./PetMeetingCard.js";
+import CreateMeetingCard from "./CreateMeetingCard.js";
 
-class PetProfile extends React.Component {
+class PetProfile extends Component {
+
+
+  componentDidMount = () => {
+    this.fetchAndSetPet(this.props.match.params.id)
+  }
+
+  fetchAndSetPet = (id) => {
+    fetch("http://localhost:4000/api/v1/pets/".concat(`${id}`))
+    .then(res => res.json())
+    .then(pet => {
+      this.props.setCurrentPet(pet)
+    })
+  }
 
   conditionallyRenderMeetingPrompt = () => {
-    let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
+    let formerMeetingAdopterIds = this.props.currentPet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
     if (this.props.currentUser && formerMeetingAdopterIds.includes(this.props.currentUser.id)) {
       return null
     }
     else {
-      return (<CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+      return (<CreateMeetingCard  addPetMeeting={this.addPetMeeting}/>
       )
     }
   }
@@ -29,31 +43,31 @@ class PetProfile extends React.Component {
 
   renderPetInfoList = () => {
       return (<div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em"}}>
-  <img alt="" className="ui medium circular image" src={this.props.pet.img_url}/>
-  <h1>{this.props.pet.name}</h1><div className="ui list">
+  <img alt="" className="ui medium circular image" src={this.props.currentPet.img_url}/>
+  <h1>{this.props.currentPet.name}</h1><div className="ui list">
   <div className="item">
     <i className="marker icon"></i>
     <div className="content">
-      {this.props.pet.location}
+      {this.props.currentPet.location}
     </div>
   </div>
   <div className="item">
   <i className="birthday cake icon"></i>
   <div className="content">
-    {this.renderAge(this.props.pet.age)}
-    {this.props.pet.age > 12 ? `(`+this.props.pet.age+`months)`:`` }
+    {this.renderAge(this.props.currentPet.age)}
+    {this.props.currentPet.age > 12 ? `(`+this.props.currentPet.age+`months)`:`` }
   </div>
   </div>
   <div className="item">
   <i className="certificate icon"></i>
   <div className="content">
-    {this.props.pet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
+    {this.props.currentPet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
   </div>
   </div>
   <div className="item">
-  {this.props.pet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
+  {this.props.currentPet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
   <div className="content">
-    {this.props.pet.sex === "male"  ? "Male" : "Female"}
+    {this.props.currentPet.sex === "male"  ? "Male" : "Female"}
   </div>
   </div>
   </div>
@@ -70,8 +84,8 @@ class PetProfile extends React.Component {
 
 
   renderPetMeetings = () => {
-      if(this.props.pet.meetings.length){
-        return (<PetMeetingCard pet={this.props.pet}/>)
+      if(this.props.currentPet.meetings.length){
+        return (<PetMeetingCard pet={this.props.currentPet}/>)
       }
       else {
         return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
@@ -81,6 +95,9 @@ class PetProfile extends React.Component {
 
 
   render(){
+    if (!this.props.currentPet){
+      return <h1>Loading...</h1>
+    }
     return(
       <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
           <div className="column">
@@ -94,4 +111,25 @@ class PetProfile extends React.Component {
   }
 }
 
-export default PetProfile
+
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentUser: (user) => {
+      dispatch({type: "SET_CURRENT_USER", payload: user})
+    },
+    setCurrentPet: (pet) => {
+      dispatch({type: "SET_CURRENT_PET", payload: pet})
+    }
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    currentPet: state.currentPet
+  }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(PetProfile)

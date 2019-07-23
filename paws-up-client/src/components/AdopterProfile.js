@@ -67,7 +67,7 @@ class AdopterProfile extends React.Component{
           return (
             <div>
             <AdopterMeetingCard currentUser={this.props.currentUser}/>
-            <h4>  <Link to="/"> Do you wnat to see more pets? </Link></h4>
+            <h4>  <Link to="/pets"> Do you want to see more pets? </Link></h4>
             </div>
           )
         }

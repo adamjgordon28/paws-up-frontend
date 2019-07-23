@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PetPage from './containers/PetPage.js'
 import CreateAdopterForm from './containers/CreateAdopterForm.js'
@@ -17,7 +17,7 @@ import Login from './components/Login.js';
 
 import './App.css';
 
-class App extends React.Component {
+class App extends Component {
 
     logOut = () => {
     localStorage.removeItem("token")
@@ -26,6 +26,7 @@ class App extends React.Component {
   }
 
     componentDidMount() {
+    this.fetchPets()
     const token = localStorage.getItem("token")
 
     if (token) {
@@ -65,8 +66,13 @@ class App extends React.Component {
 
   }
 
-
-
+  fetchPets = () => {
+    fetch("http://localhost:4000/api/v1/pets")
+    .then(res => res.json())
+    .then(pets => {
+      this.props.setPets(pets)
+    })
+  }
 
 
   render(){
@@ -76,16 +82,16 @@ class App extends React.Component {
         <header className="App-header">
         {this.props.history.location.pathname==="/"? <Header/>:" "}
         <Switch>
-        <Route exact path ='/' render = {(routeProps)=>
-          <PetPage {...routeProps} currentUser={this.props.currentUser}/>} />
+            <Route exact path ='/pets' render = {(routeProps)=>
+              <PetPage {...routeProps} currentUser={this.props.currentUser}/>} />
             <Route exact path = '/new-pet' render={(routeProps) => <CreatePetForm createPet = {this.createPet} {...routeProps}/>}/>
             <Route exact path = '/about' render={(routeProps) => <About {...routeProps}/> }/>
             <Route exact path = '/signup' render={(routeProps) => <CreateAdopterForm {...routeProps} createAdopter = {this.createAdopter}/>}/>
             <Route exact path = '/login' render={(routeProps) => <Login {...routeProps}/>}/>
             <Route exact path = '/adopter-profile' render={(routeProps) => <AdopterProfile {...routeProps} /> }/>
-            <Route exact path = '/pet-profile/:id' render={(routeProps) => <PetProfile {...routeProps} /> }/>
+            <Route exact path = '/pet-profiles/:id' render={(routeProps) => <PetProfile {...routeProps} /> }/>
             <Route exact path ='/logout' render = {(routeProps) => <Logout logOut = {this.logOut} {...routeProps}/>}/>
-
+          <Route path = '/' render={(routeProps) => <About {...routeProps}/> }/>
         </Switch>
         </header>
       </div>
@@ -97,13 +103,17 @@ function mapDispatchToProps(dispatch) {
   return {
     setCurrentUser: (user) => {
       dispatch({type: "SET_CURRENT_USER", payload: user})
+    },
+    setPets: (pets) => {
+      dispatch({type: "SET_PETS", payload: pets})
     }
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.currentUser,
+    pets: state.pets
   }
 }
 

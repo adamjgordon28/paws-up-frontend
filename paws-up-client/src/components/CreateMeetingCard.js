@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
 
 class CreateMeetingCard extends React.Component {
@@ -29,13 +30,13 @@ class CreateMeetingCard extends React.Component {
                 },
         body: JSON.stringify({
           adopter_id: this.props.currentUser.id,
-          pet_id: this.props.pet.id,
+          pet_id: this.props.currentPet.id,
           datetime: this.state.datetime,
           location: this.state.location
         })
       })
 
-      this.props.fetchPets()
+      
 
     }
 
@@ -58,5 +59,12 @@ class CreateMeetingCard extends React.Component {
     }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    currentPet: state.currentPet
+  }
+}
 
-export default CreateMeetingCard
+
+export default connect (mapStateToProps)(CreateMeetingCard)

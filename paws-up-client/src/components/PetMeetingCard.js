@@ -1,9 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class PetMeetingCard extends React.Component {
 
   renderMeetingRows = () => {
-    let rowArray = this.props.pet.meetings.map((meeting) => {
+    let rowArray = this.props.currentPet.meetings.map((meeting) => {
       return (<tr>
         <td>
           <h4 className="ui image header">
@@ -42,4 +43,13 @@ class PetMeetingCard extends React.Component {
   }
 }
 
-export default PetMeetingCard
+
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    currentPet: state.currentPet
+  }
+}
+
+export default connect(mapStateToProps)(PetMeetingCard)

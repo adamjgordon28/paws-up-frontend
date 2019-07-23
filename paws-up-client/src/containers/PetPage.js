@@ -1,7 +1,8 @@
 import React, {Fragment} from 'react';
-import PetContainer from './PetContainer.js'
-import PetProfile from '../components/PetProfile.js'
-import Filter from '../components/Filter.js'
+import { connect } from 'react-redux';
+import PetContainer from './PetContainer.js';
+import PetProfile from '../components/PetProfile.js';
+import Filter from '../components/Filter.js';
 
 class PetPage extends React.Component {
 
@@ -81,7 +82,6 @@ class PetPage extends React.Component {
 
 
   componentDidMount(){
-
     if(!localStorage.token) {
       alert ("You must be logged in to view this page!")
       this.props.history.push("/login")
@@ -95,9 +95,7 @@ class PetPage extends React.Component {
     })
   }
 
-  findPet = (id) => {
-    return this.state.pets.find((pet)=>pet.id === id)
-  }
+
 
   render(){
   return (
@@ -106,7 +104,7 @@ class PetPage extends React.Component {
 
     {this.state.selectedPetId ?
 
-      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
+      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} fetchPets={this.fetchPets}/>
 
     : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 
@@ -117,4 +115,11 @@ class PetPage extends React.Component {
   }
 }
 
-export default PetPage
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.currentUser,
+    pets: state.pets
+  }
+}
+
+export default connect(mapStateToProps)(PetPage)
