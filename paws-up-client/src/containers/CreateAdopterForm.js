@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom'
 
 
@@ -25,7 +26,34 @@ class CreateAdopterForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createAdopter(this.state)
+    this.createAdopter(this.state)
+  }
+
+  createAdopter = (adopter)=> {
+    fetch("http://localhost:4000/api/v1/adopters",{
+      method: "POST",
+      headers: {"Content-Type": "application/json", Accepts: "application/json"},
+      body: JSON.stringify({name: adopter.name,
+        username: adopter.username,
+        password: adopter.password,
+        age: adopter.age,
+        location: adopter.location,
+        residence_type: adopter.residence_type,
+        allergy: adopter.allergy,
+        other_pets: adopter.other_pets,
+        img_url: adopter.img_url})
+    })
+    .then(res=>res.json())
+    .then(response => {
+      if (response.error){
+            alert(response.error)
+          }
+      else {
+      localStorage.setItem("token", response.token)
+      this.setCurrentUser(response.adopter)
+      }
+    })
+
   }
 
   render(){
@@ -77,4 +105,13 @@ class CreateAdopterForm extends React.Component {
 }
 
 
-export default CreateAdopterForm
+function mapDispatchToProps(dispatch) {
+  return {
+    setCurrentUser: (user) => {
+      dispatch({type: "SET_CURRENT_USER", payload: user})
+    }
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(CreateAdopterForm)

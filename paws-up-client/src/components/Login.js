@@ -56,8 +56,9 @@ class Login extends React.Component {
 
 function mapDispatchToProps(dispatch) {
   return {
+
     setCurrentUser: (user) => {
-      dispatch({type: "SET_CURRENT_USER", payload: user})
+      dispatch({type: 'SET_CURRENT_USER', payload: user})
     }
   }
 }

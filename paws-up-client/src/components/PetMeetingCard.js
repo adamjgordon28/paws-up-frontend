@@ -6,11 +6,11 @@ class PetMeetingCard extends React.Component {
     let rowArray = this.props.pet.meetings.map((meeting) => {
       return (<tr>
         <td>
-          <h4 class="ui image header">
-            <img alt="" src={meeting.adopter_img_url} class="ui mini rounded image"/>
-            <div class="content">
+          <h4 className="ui image header">
+            <img alt="" src={meeting.adopter_img_url} className="ui mini rounded image"/>
+            <div className="content">
               {meeting.adopter}
-              <div class="sub header">{meeting.location}
+              <div className="sub header">{meeting.location}
             </div>
           </div>
         </h4></td>
