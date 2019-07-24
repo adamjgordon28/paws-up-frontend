@@ -26,6 +26,14 @@ class CreatePetForm extends React.Component {
     this.props.createPet(this.state)
 
   }
+  
+  componentDidMount(){
+    if(!localStorage.token) {
+      alert ("You must be logged in to view this page!")
+      this.props.history.push("/login")
+    }
+  }
+
 
   render(){
     return(

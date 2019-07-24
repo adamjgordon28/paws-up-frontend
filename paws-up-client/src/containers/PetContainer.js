@@ -9,7 +9,7 @@ class PetContainer extends React.Component {
 renderPets = () => {
   if (this.props.pets.length){
   let petNameArray = this.props.pets.map((pet) => {
-    return <PetCard key={pet.id} pet={pet} setSelectedPet = {this.props.setSelectedPet}/>
+    return <PetCard key={pet.id} pet={pet}/>
   })
   return petNameArray
   }

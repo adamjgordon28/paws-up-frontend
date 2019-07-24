@@ -37,6 +37,10 @@ class CreateMeetingCard extends React.Component {
       })
       .then(res=>res.json())
       .then(meeting => {
+        if(meeting.errors){
+          alert(meeting.errors)
+          }
+        else {
         meeting.pet_img_url = this.props.currentPet.img_url
         meeting.pet = this.props.currentPet.name
         meeting.adopter_img_url = this.props.currentUser.img_url
@@ -44,12 +48,12 @@ class CreateMeetingCard extends React.Component {
 
         this.props.addMeetingToCurrentUser(meeting)
         this.props.addMeetingToCurrentPet(meeting)
+        }
       })
 
     }
 
     render(){
-      console.log(this.props.currentPet)
       return (
 
         <div style={{marginTop: "12em", marginLeft: "3em", color: "black", padding: ".25em"}} className="ui raised card">

@@ -69,16 +69,6 @@ class PetPage extends React.Component {
     return finalArray
   }
 
-  fetchPets = () => {
-    fetch("http://localhost:4000/api/v1/pets")
-    .then(res => res.json())
-    .then(pets => {
-      this.setState({
-        pets: pets
-      })
-    })
-  }
-
 
 
   componentDidMount(){
@@ -86,30 +76,18 @@ class PetPage extends React.Component {
       alert ("You must be logged in to view this page!")
       this.props.history.push("/login")
     }
-    this.fetchPets()
   }
 
-  setSelectedPet = (pet) => {
-    this.setState({
-      selectedPetId: pet.id
-    })
-  }
 
 
 
   render(){
   return (
-
     <Fragment>
-
     {this.state.selectedPetId ?
+      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
-      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} fetchPets={this.fetchPets}/>
-
-    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
-
-
-
+    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.props.pets)}/> </Fragment>}
     </Fragment>
   )
   }

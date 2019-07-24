@@ -28,7 +28,7 @@ class PetMeetingCard extends React.Component {
       <table className="ui very basic collapsing celled table">
 
   <thead>
-    <th style={{textAlign:"center", background: "darkblue", color: "white"}} colspan="2">Meetings</th>
+    <th style={{textAlign:"center", background: "darkblue", color: "white"}} colSpan="2">Meetings</th>
     <tr><th>Adopter Name</th>
     <th>Date</th>
   </tr></thead>

@@ -9,7 +9,6 @@ import NavBar from './components/NavBar.js'
 import Header from './components/Header.js'
 import PetProfile from './components/PetProfile.js'
 import Logout from './components/Logout.js'
-import history from './history.js'
 
 
 import {Route, Switch, Redirect} from 'react-router-dom';
@@ -65,7 +64,8 @@ class App extends Component {
         alert(data.errors)
       }
       else {
-     return this.props.history.push("/pets")
+    this.props.addPetToPets(data)
+     return this.props.history.push("/pet-profiles/".concat(`${data.id}`))
      }
     })
 
@@ -111,6 +111,9 @@ function mapDispatchToProps(dispatch) {
     },
     setPets: (pets) => {
       dispatch({type: "SET_PETS", payload: pets})
+    },
+    addPetToPets: (pet) => {
+      dispatch({type: "ADD_PET_TO_PETS", payload: pet})
     }
   }
 }
