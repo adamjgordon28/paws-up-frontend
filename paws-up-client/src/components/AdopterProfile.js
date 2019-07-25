@@ -1,6 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import AdopterMeetingCard from './AdopterMeetingCard.js';
 import { Link } from 'react-router-dom';
+
+import { connect } from 'react-redux'
+import { Card, Image } from 'semantic-ui-react'
+import withAuth from '../hocs/withAuth'
+
+
 
 class AdopterProfile extends React.Component{
     capitalize = (s) => {
@@ -14,45 +20,50 @@ class AdopterProfile extends React.Component{
   }
 
     renderAdopterInfoList = () => {
-      if (this.props.currentUser){
+      console.log("here",this.props);
+      if (this.props.adopter){
         return (
-          <div style={{position:"relative", right: "6em", fontSize: "1.6em"}}>
-        <h1>{this.capitalize(this.props.currentUser.name)}'s Page</h1>
-    <img alt="" className="ui medium circular image" src={this.props.currentUser.img_url}/>
-    <div className="ui list">
-    <div className="item">
-      <i className="marker icon"></i>
-      <div className="content">
-        {this.props.currentUser.location}
-      </div>
-    </div>
-  <div className="item">
-    <i className="home icon"></i>
-    <div className="content">
-      Residence Type: {this.props.currentUser.residence_type}
-    </div>
-  </div>
-  <div className="item">
-    <i className="birthday cake icon"></i>
-    <div className="content">
-      {this.props.currentUser.age} Years Old
-    </div>
-  </div>
-  <div className="item">
-    <i className="certificate icon"></i>
-    <div className="content">
-      {this.props.currentUser.allergy? "Adopter Has Allergies": "Adopter Has No Allergies"}
-    </div>
-  </div>
-  <div className="item">
-    <i className="paw icon"></i>
-    <div className="content">
-      {this.props.currentUser.other_pets ? "Adopter Has Other Pets" : "No Other Pets"}
-    </div>
-  </div>
-</div>
-
-  </div>)
+          <div className="adopterProfile">
+            <Card>
+              <Image src={this.props.adopter.img_url} />
+              <Card.Content>
+              <Card.Header>{this.capitalize(this.props.adopter.name)}</Card.Header>
+              <Card.Description> username : {this.props.adopter.username}</Card.Description>
+              </Card.Content>
+            </Card>
+              <div className="ui list">
+              <div className="item">
+                <i className="marker icon"></i>
+                <div className="content">
+                  {this.props.adopter.location}
+                </div>
+              </div>
+            <div className="item">
+              <i className="home icon"></i>
+              <div className="content">
+                Residence Type: {this.props.adopter.residence_type}
+              </div>
+            </div>
+            <div className="item">
+              <i className="birthday cake icon"></i>
+              <div className="content">
+                {this.props.adopter.age} Years Old
+              </div>
+            </div>
+            <div className="item">
+              <i className="certificate icon"></i>
+              <div className="content">
+                {this.props.adopter.allergy? "Adopter Has Allergies": "Adopter Has No Allergies"}
+              </div>
+            </div>
+            <div className="item">
+              <i className="paw icon"></i>
+              <div className="content">
+                {this.props.adopter.other_pets ? "Adopter Has Other Pets" : "No Other Pets"}
+              </div>
+            </div>
+          </div>
+        </div>)
       }
       else {
        return null
@@ -61,19 +72,31 @@ class AdopterProfile extends React.Component{
 
 
     renderAdopterMeetings = () => {
-      if(this.props.currentUser){
-        if(this.props.currentUser.meetings.length){
+      if(this.props.adopter){
+        if(this.props.adopter.meetings.length){
           return (
-            <div>
-            <AdopterMeetingCard currentUser={this.props.currentUser}/>
-            <h4>  <Link to="/"> Do you wnat to see more pets? </Link></h4>
-            </div>
+            <Fragment>
+            <AdopterMeetingCard adopter={this.props.adopter}/>
+            <h4><Link to="/"> Do you wnat to see more pets? </Link></h4>
+            </Fragment>
           )
         }
         else {
-          return(<div style={{position:"relative", top:"6em"}} className="ui message huge">
-          You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go See Some Pets!</span></Link>
-          </div>)
+          return(
+          <Fragment>
+            <Card>
+              <Card.Content>
+                <Card.Header>
+                  <i class="calendar times outline icon"></i>
+                  No Meeting
+                </Card.Header>
+                <hr/>
+              <Card.Description>
+                You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go and Find Your Pet!</span></Link>
+              </Card.Description>
+              </Card.Content>
+            </Card>
+          </Fragment>)
         }
       }
       else {
@@ -83,16 +106,20 @@ class AdopterProfile extends React.Component{
 
     render(){
       return(
-
-        <div>
-            <div className="ui two column very relaxed grid"><div className="column">{this.renderAdopterInfoList()}</div>
-            <div className="column">{this.renderAdopterMeetings()}</div>
-            </div>
-          </div>
+        <div className="adopter">
+            <div>{this.renderAdopterInfoList()}</div>
+            <br/>
+            <div className="meeting">{this.renderAdopterMeetings()}</div>
+        </div>
       )
     }
 
 }
 
 
-export default AdopterProfile
+
+const mapStateToProps = ({ adoptersReducer: { adopter: adopter } }) => ({
+  adopter
+})
+
+export default withAuth(connect(mapStateToProps)(AdopterProfile))

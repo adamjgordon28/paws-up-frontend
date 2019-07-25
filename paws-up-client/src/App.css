@@ -32,6 +32,25 @@
   }
 }
 
+.adopter{
+  display: flex;
+  flex-flow: row;
+  border-style: groove;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 4%;
+
+}
+.adopterProfile{
+  padding: 10%;
+  font-size: 1.3em;
+}
+
+.meeting{
+
+  padding-top: 10%;
+}
+
 .petCard {
   display: inline;
   background-repeat: no-repeat;

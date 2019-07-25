@@ -1,15 +1,35 @@
 import React from 'react';
-import PetCard from '../components/PetCard.js'
+import PetCard from '../components/PetCard'
+import Header from '../components/Header'
+
 
 
 class PetContainer extends React.Component {
+  state={
+    pets: null
+  }
 
+  componentDidMount(){
+    this.getPets()
+  }
+
+  getPets = () => {
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/pets`,{
+           method: "GET",
+           headers: {"Content-Type": "application/json",
+                      Accepts: "application/json"}
+         })
+         .then(res=>res.json())
+         .then((data) => this.setState({
+           pets: data
+         }))
+  }
 
 
 renderPets = () => {
-  if (this.props.pets.length){
-  let petNameArray = this.props.pets.map((pet) => {
-    return <PetCard key={pet.id} pet={pet} setSelectedPet = {this.props.setSelectedPet}/>
+  if (this.state.pets){
+  let petNameArray = this.state.pets.map((pet) => {
+    return <PetCard key={pet.id} pet={pet} />
   })
   return petNameArray
   }
@@ -19,6 +39,7 @@ renderPets = () => {
 }
 
   render(){
+    console.log(this.state.pets);
     return (
       <div className="ui grid" >
       {this.renderPets()}

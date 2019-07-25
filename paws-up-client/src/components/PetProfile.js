@@ -8,11 +8,11 @@ class PetProfile extends React.Component {
     let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
     return  meeting.adopter_id
     })
-    if (this.props.currentUser && formerMeetingAdopterIds.includes(this.props.currentUser.id)) {
+    if (this.props.currentAdopter && formerMeetingAdopterIds.includes(this.props.currentAdopter.id)) {
       return null
     }
     else {
-      return (<CreateMeetingCard currentUser={this.props.currentUser} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+      return (<CreateMeetingCard currentAdopter={this.props.currentAdopter} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
       )
     }
   }

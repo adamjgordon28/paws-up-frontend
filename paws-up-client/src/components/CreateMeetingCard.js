@@ -28,7 +28,7 @@ class CreateMeetingCard extends React.Component {
     'Content-Type': 'application/json'
                 },
         body: JSON.stringify({
-          adopter_id: this.props.currentUser.id,
+          adopter_id: this.props.currentAdopter.id,
           pet_id: this.props.pet.id,
           datetime: this.state.datetime,
           location: this.state.location

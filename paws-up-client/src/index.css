@@ -12,3 +12,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.login{
+  text-align: center;
+  align-items: left;
+  display: inline;
+}
+
+.login-form {
+  padding-top: 3em;
+  padding-left: 27%;
+  align-items: center;
+}

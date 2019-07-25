@@ -81,7 +81,6 @@ class PetPage extends React.Component {
 
 
   componentDidMount(){
-
     if(!localStorage.token) {
       alert ("You must be logged in to view this page!")
       this.props.history.push("/login")
@@ -106,7 +105,7 @@ class PetPage extends React.Component {
 
     {this.state.selectedPetId ?
 
-      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
+      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentAdopter= {this.props.currentAdopter} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
     : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
 

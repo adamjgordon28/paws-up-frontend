@@ -3,7 +3,7 @@ import React from 'react';
 class AdopterMeetingCard extends React.Component {
 
   renderMeetingRows = () => {
-    let rowArray = this.props.currentUser.meetings.map((meeting) => {
+    let rowArray = this.props.currentAdopter.meetings.map((meeting) => {
       return (<tr key={Math.random()}>
         <td>
           <h4 className="ui image header">
