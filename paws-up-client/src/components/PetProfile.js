@@ -88,7 +88,7 @@ class PetProfile extends Component {
         return (<PetMeetingCard pet={this.props.currentPet}/>)
       }
       else {
-        return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
+        return(<div style={{position:"relative", top:"2em", width:"14em"}} className="ui message huge"><span style={{textAlign:"center"}}>This Pet Has No Meetings Yet! Set One Up!</span></div>)
       }
   }
 
