@@ -11,6 +11,8 @@ import 'semantic-ui-css/semantic.min.css'
 
 import App from './App'
 import adoptersReducer from './reducers/adoptersReducer' //TODO: move
+import petsReducer from './reducers/petsReducer'
+
 import registerServiceWorker from './registerServiceWorker'
 
 // combines your reducers =>
@@ -20,7 +22,7 @@ import registerServiceWorker from './registerServiceWorker'
   whereToNestReducerState: reducer
 }
 */
-const rootReducer = combineReducers({ adoptersReducer: adoptersReducer }) //TODO: move this too
+const rootReducer = combineReducers({ adoptersReducer: adoptersReducer, petsReducer: petsReducer }) //TODO: move this too
 
 // dion't use thunk if you don't think you need to
 // is not the only lubrary to do that -=> redux-saga, redux-promise

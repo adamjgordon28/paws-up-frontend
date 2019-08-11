@@ -1,4 +1,6 @@
 import React from 'react';
+import PetProfile from './PetProfile'
+
 
 const PetCard = (props) => {
   const renderAge=(age)=>{
@@ -8,6 +10,8 @@ const PetCard = (props) => {
       return Math.floor(parseInt(age)/12)+" years old"
     }
   }
+
+
 
   let animalType;
   switch (props.pet.animal) {
@@ -35,7 +39,7 @@ const PetCard = (props) => {
 
 
     return (
-        <div style={{ margin: "3em", justifyContent:'center', alignItems:'center', height: '35em', minWidth: '18em' }} className="ui card three wide column" onClick={() => props.setSelectedPet(props.pet)}>
+        <div style={{ margin: "3em", justifyContent:'center', alignItems:'center', height: '35em', minWidth: '18em' }} className="ui card three wide column" onClick={()=>props.setSelectedPet(props.pet)}>
           <div className="image">
             <img style={{objectFit: "cover", height: "25em"}} alt="" src={props.pet.img_url}/>
           </div>

@@ -33,7 +33,7 @@ class CreateAdopterForm extends React.Component {
     return(
       <div>
 
-      <h1>Create an Adopter Account!</h1>
+      <h2>Create an Adopter Account!</h2>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input placeholder="username" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>

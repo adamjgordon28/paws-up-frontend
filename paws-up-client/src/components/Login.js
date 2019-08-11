@@ -29,7 +29,7 @@ class Login extends React.Component {
       <Header/>
       <div className="login-form">
       <Segment style={{width: "40em"}}>
-      <h1>Login</h1>
+      <h2>Login</h2>
       <hr/>
       <br/>
         <Form

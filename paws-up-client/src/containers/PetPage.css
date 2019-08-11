@@ -1,0 +1,34 @@
+.page{
+  text-align: center;
+  align-items: center;
+
+}
+
+.container{
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 6em;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Gorditas:700');
+
+h1{
+    font-family: 'Gorditas', cursive;
+    font-size: 6em;
+    display: inline-block;
+    color: #F08080;
+  }
+
+.PetProfile{
+  display: flex;
+}
+.petinfo{
+  text-align:left;
+  padding-left: 10em;
+  font-size: 1.2em;
+}
+.meetingcard{
+  padding-top: 13em;
+  padding-left: 6em;
+}

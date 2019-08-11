@@ -1,18 +1,22 @@
 import React from 'react';
 import PetMeetingCard from "./PetMeetingCard.js"
 import CreateMeetingCard from "./CreateMeetingCard.js"
+import '../containers/PetPage.css'
+
+import { connect } from 'react-redux'
+// import withAuth from "../hocs/withAuth"
 
 class PetProfile extends React.Component {
 
   conditionallyRenderMeetingPrompt = () => {
-    let formerMeetingAdopterIds = this.props.pet.meetings.map((meeting) => {
+    let formerMeetingAdopterIds = this.props.pet[0].meetings.map((meeting) => {
     return  meeting.adopter_id
     })
     if (this.props.currentAdopter && formerMeetingAdopterIds.includes(this.props.currentAdopter.id)) {
       return null
     }
     else {
-      return (<CreateMeetingCard currentAdopter={this.props.currentAdopter} pet={this.props.pet} addPetMeeting={this.addPetMeeting} fetchPets={this.props.fetchPets}/>
+      return (<CreateMeetingCard currentAdopter={this.props.adopter} pet={this.props.pet[0]} addPetMeeting={this.addPetMeeting}/>
       )
     }
   }
@@ -28,38 +32,42 @@ class PetProfile extends React.Component {
 
 
   renderPetInfoList = () => {
-      return (<div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em"}}>
-  <img alt="" className="ui medium circular image" src={this.props.pet.img_url}/>
-  <h1>{this.props.pet.name}</h1><div className="ui list">
-  <div className="item">
-    <i className="marker icon"></i>
-    <div className="content">
-      {this.props.pet.location}
-    </div>
-  </div>
-  <div className="item">
-  <i className="birthday cake icon"></i>
-  <div className="content">
-    {this.renderAge(this.props.pet.age)}
-    {this.props.pet.age > 12 ? `(`+this.props.pet.age+`months)`:`` }
-  </div>
-  </div>
-  <div className="item">
-  <i className="certificate icon"></i>
-  <div className="content">
-    {this.props.pet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
-  </div>
-  </div>
-  <div className="item">
-  {this.props.pet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
-  <div className="content">
-    {this.props.pet.sex === "male"  ? "Male" : "Female"}
-  </div>
-  </div>
-  </div>
+      return (
+        <div className="petinfo">
+            <h1>{this.props.pet[0].name}</h1>
+          <img alt="" className="ui medium circular image" src={this.props.pet[0].img_url}/>
+          <br/> <br/>
+          <hr/>
+          <div className="ui list">
+          <div className="item">
+          <i className="marker icon"></i>
+          <div className="content">
+            {this.props.pet[0].location}
+          </div>
+          </div>
+          <div className="item">
+            <i className="birthday cake icon"></i>
+            <div className="content">
+            {this.renderAge(this.props.pet[0].age)}
+            {this.props.pet[0].age > 12 ? `(`+this.props.pet[0].age+`months)`:`` }
+            </div>
+            </div>
+            <div className="item">
+            <i className="certificate icon"></i>
+            <div className="content">
+            {this.props.pet[0].allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
+            </div>
+            </div>
+            <div className="item">
+            {this.props.pet[0].sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
+            <div className="content">
+            {this.props.pet[0].sex === "male"  ? "Male" : "Female"}
+            </div>
+            </div>
+            </div>
 
-  </div>)
-  }
+      </div>)
+      }
 
     addPetMeeting = (meeting) => {
       this.setState((prevState)=>{
@@ -70,28 +78,36 @@ class PetProfile extends React.Component {
 
 
   renderPetMeetings = () => {
-      if(this.props.pet.meetings.length){
-        return (<PetMeetingCard pet={this.props.pet}/>)
+      if(this.props.pet[0].meetings.length){
+        return (<PetMeetingCard pet={this.props.pet[0]}/>)
       }
       else {
-        return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
+        return(<div className="ui message huge">{this.props.pet[0].name} Has No Meetings Yet! Set One Up!</div>)
       }
   }
 
 
 
   render(){
+    console.log(this.props.adopter);
     return(
-      <div><div className="ui two column very relaxed grid"><div className="column">{this.renderPetInfoList()}</div>
-          <div className="column">
-          {this.renderPetMeetings()}
-
-            {this.conditionallyRenderMeetingPrompt()}
-          </div>
-          </div>
-        </div>
+      <div className="PetProfile">
+                {this.renderPetInfoList()}
+              <div className="meetingcard">
+                {this.renderPetMeetings()}
+                {this.conditionallyRenderMeetingPrompt()}
+              </div>
+      </div>
     )
   }
 }
 
-export default PetProfile
+
+
+const mapStateToProps = ({ petsReducer: { pets: pets } , adoptersReducer: {adopter: adopter} }) => ({
+  pets, adopter
+})
+
+export default connect(mapStateToProps)(PetProfile)
+
+// export default withAuth(PetProfile)

@@ -1,12 +1,17 @@
 import React, {Fragment} from 'react';
 import PetContainer from './PetContainer.js'
 import PetProfile from '../components/PetProfile.js'
+import Header from '../components/Header'
 import Filter from '../components/Filter.js'
+import './PetPage.css'
+
+import { fetchPets } from '../actions/pet'
+import { connect } from 'react-redux'
+
 
 class PetPage extends React.Component {
 
   state = {
-    pets: [],
     selectedPetId: null,
     animalFilter: null,
     sizeFilter: null,
@@ -68,24 +73,10 @@ class PetPage extends React.Component {
     return finalArray
   }
 
-  fetchPets = () => {
-    fetch("http://localhost:4000/api/v1/pets")
-    .then(res => res.json())
-    .then(pets => {
-      this.setState({
-        pets: pets
-      })
-    })
-  }
-
 
 
   componentDidMount(){
-    if(!localStorage.token) {
-      alert ("You must be logged in to view this page!")
-      this.props.history.push("/login")
-    }
-    this.fetchPets()
+    this.props.fetchPets()
   }
 
   setSelectedPet = (pet) => {
@@ -95,25 +86,31 @@ class PetPage extends React.Component {
   }
 
   findPet = (id) => {
-    return this.state.pets.find((pet)=>pet.id === id)
+    return this.props.pets.filter(p=>p.id === id)
   }
 
   render(){
+    console.log("HEREHERE", this.props.pets);
   return (
 
-    <Fragment>
-
+    <div className="page">
+    {this.state.selectedPetId? null: <Header/>}
     {this.state.selectedPetId ?
+      <PetProfile
+      fetchAndSetAdopters= {this.props.fetchAndSetAdopters}
+      currentAdopter= {this.props.currentAdopter}
+      pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
-      <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentAdopter= {this.props.currentAdopter} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
-
-    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.state.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
-
+    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.props.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
+    </div>
 
 
-    </Fragment>
   )
   }
 }
 
-export default PetPage
+const mapStateToProps = ({ petsReducer: { pets: pets } }) => ({
+  pets
+})
+
+export default connect(mapStateToProps,{fetchPets})(PetPage)

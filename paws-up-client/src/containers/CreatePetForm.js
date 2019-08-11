@@ -31,7 +31,7 @@ class CreatePetForm extends React.Component {
       <div>
 
 
-      <h1>Create a pet!</h1>
+      <h2>Create a pet!</h2>
         <form className="ui form" style = {{width: "25em"}} onSubmit ={this.handleSubmit}>
         <div className="field">
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text"required/>

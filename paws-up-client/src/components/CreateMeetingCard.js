@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { setPet } from '../actions/pet'
 
 
 class CreateMeetingCard extends React.Component {
@@ -7,7 +9,6 @@ class CreateMeetingCard extends React.Component {
     datetime: "",
     location: ""
   }
-
 
 
     handleChange = (e) => {
@@ -21,8 +22,7 @@ class CreateMeetingCard extends React.Component {
     }
 
     createMeeting = () => {
-
-      fetch("http://localhost:4000/api/v1/meetings", {
+      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/meetings`, {
         method: "POST",
         headers:{
     'Content-Type': 'application/json'
@@ -34,8 +34,6 @@ class CreateMeetingCard extends React.Component {
           location: this.state.location
         })
       })
-
-      this.props.fetchPets()
 
     }
 
@@ -59,4 +57,11 @@ class CreateMeetingCard extends React.Component {
 }
 
 
-export default CreateMeetingCard
+
+const mapStateToProps = ({ adoptersReducer: { adopter: adopter } }) => ({
+  adopter
+})
+
+export default connect(mapStateToProps)(CreateMeetingCard)
+
+// export default CreateMeetingCard

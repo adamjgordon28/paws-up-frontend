@@ -8,7 +8,7 @@ class Header extends Component {
     return (
       <header>
         <Link to="/">
-        <h1 style={{fontSize: '4em'}} className="logo">
+        <h1 style={{fontSize: '6em'}} className="logo">
         PawsUp🐾
         </h1>
         </Link>

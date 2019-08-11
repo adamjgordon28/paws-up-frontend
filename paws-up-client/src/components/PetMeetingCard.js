@@ -21,6 +21,7 @@ class PetMeetingCard extends React.Component {
     })
     return rowArray
   }
+  
   render(){
     return(
       <div className="ui raised card" style={{marginTop: "3em", padding: "0.25em"}}>

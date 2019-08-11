@@ -7,7 +7,6 @@ import { Card, Image } from 'semantic-ui-react'
 import withAuth from '../hocs/withAuth'
 
 
-
 class AdopterProfile extends React.Component{
     capitalize = (s) => {
    if (typeof s !== 'string'){ return ''}
@@ -87,7 +86,7 @@ class AdopterProfile extends React.Component{
             <Card>
               <Card.Content>
                 <Card.Header>
-                  <i class="calendar times outline icon"></i>
+                  <i className="calendar times outline icon"></i>
                   No Meeting
                 </Card.Header>
                 <hr/>

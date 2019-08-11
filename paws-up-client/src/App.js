@@ -4,11 +4,12 @@ import Profile from './components/profile'
 import LoginForm from './components/Login'
 import NavBar from './components/NavBar'
 import PetContainer from './containers/PetContainer'
+import PetPage from './containers/PetPage'
 import CreatePetForm from './containers/CreatePetForm'
 import CreateAdopterForm from './containers/CreateAdopterForm'
 import AdopterProfile from './components/AdopterProfile'
+import About from './components/About'
 
-// import NotFound from './components/notFound'
 import './App.css'
 
 
@@ -22,17 +23,16 @@ const App = props => {
         <Route exact path="/profile" component={AdopterProfile} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/signup" component={CreateAdopterForm} />
-
-        <Route exact path="/logout" render={() => <Redirect to="/login" />} />
-        <Route exact path="/pets" component={PetContainer}/>
-        <Route exact path="/newpet" render={() => <Redirect to="/CreatePetForm" />} />
+        <Route exact path="/logout" render={() => <Redirect to="/" />} />
+        <Route exact path="/pets" component={PetPage}/>
+        <Route exact path="/newpet" component={CreatePetForm} />
+        <Route exact path="/about" component={About}/>
       </Switch>
     </Fragment>
   )
 }
 
-export default withRouter(App) //withRouter is a Higher Order Component (HOC) that returns a COPY of App with React router props injected
-
+export default withRouter(App)
 
 // class App extends React.Component {
 //

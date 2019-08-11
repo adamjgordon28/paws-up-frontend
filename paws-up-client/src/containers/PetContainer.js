@@ -1,35 +1,20 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PetCard from '../components/PetCard'
-import Header from '../components/Header'
-
-
+import { connect } from 'react-redux'
+import { fetchCurrentAdopter } from '../actions/adopter'
+import './PetPage.css'
 
 class PetContainer extends React.Component {
-  state={
-    pets: null
-  }
 
   componentDidMount(){
-    this.getPets()
-  }
-
-  getPets = () => {
-      fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/pets`,{
-           method: "GET",
-           headers: {"Content-Type": "application/json",
-                      Accepts: "application/json"}
-         })
-         .then(res=>res.json())
-         .then((data) => this.setState({
-           pets: data
-         }))
+    if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentAdopter()
   }
 
 
 renderPets = () => {
-  if (this.state.pets){
-  let petNameArray = this.state.pets.map((pet) => {
-    return <PetCard key={pet.id} pet={pet} />
+  if (this.props.pets){
+  let petNameArray = this.props.pets.map((pet) => {
+    return <PetCard key={pet.id} pet={pet} setSelectedPet={this.props.setSelectedPet} />
   })
   return petNameArray
   }
@@ -39,15 +24,25 @@ renderPets = () => {
 }
 
   render(){
-    console.log(this.state.pets);
     return (
-      <div className="ui grid" >
+      <Fragment>
+
+      <div className="container" >
       {this.renderPets()}
       </div>
+
+      </Fragment>
     )
 
   }
 
 }
 
-export default PetContainer
+const mapStateToProps = (reduxStoreState) => {
+  return {
+    loggedIn: reduxStoreState.adoptersReducer.loggedIn,
+    authenticatingAdopter: reduxStoreState.adoptersReducer.authenticatingAdopter
+  }
+}
+
+export default connect(mapStateToProps, {fetchCurrentAdopter})(PetContainer)
