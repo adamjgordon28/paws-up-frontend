@@ -7,14 +7,11 @@ import { Loader } from 'semantic-ui-react'
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends React.Component {
     componentDidMount() {
-      console.log('%c INSIDE COMPONENT DID MOUNT FOR AUTH HOC', 'color: purple')
       if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentAdopter()
     }
 
     render() {
-      console.log('%c INSIDE RENDER FOR HOC', 'color: green')
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
-
         return <WrappedComponent />
       } else if (localStorage.getItem('jwt') && (this.props.authenticatingAdopter || !this.props.loggedIn)) {
         return <Loader active inline="centered" />
@@ -31,11 +28,6 @@ const withAuth = (WrappedComponent) => {
     }
   }
 
-  // const mapDispatchToProps = (dispatch) => {
-  //   return {
-  //     fetchCurrentAdopter: () => dispatch(fetchCurrentAdopter()),
-  //   }
-  // }
 
   return connect(mapStateToProps, { fetchCurrentAdopter })(AuthorizedComponent)
 }

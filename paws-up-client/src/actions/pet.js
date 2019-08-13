@@ -6,7 +6,14 @@ export const fetchPets = () => {
                     Accepts: "application/json"}
        })
        .then(response => response.json())
-       .then((data) => dispatch(setAllPets(data)))
+       .then(data => {
+      if (data.errors){
+        alert(data.errors)
+      }
+      else {
+    dispatch(setAllPets(data))
+     }
+    })
 }
 }
 
@@ -21,7 +28,12 @@ export const setPet = (data) =>({
   payload: data
 })
 
-// export const setMeeting = (meeting) =>({
-//   type: 'SET_MEETING',
-//   payload: meeting
-// })
+export const addMeetingToCurrentPet = (meeting) => ({
+  type: 'ADD_MEETING_TO_CURRENT_PET',
+  payload: meeting
+})
+
+export const deleteMeetingToCurrentPet = (meeting) => ({
+  type: 'DELETE_MEETING_TO_CURRENT_PET',
+  payload: meeting
+})

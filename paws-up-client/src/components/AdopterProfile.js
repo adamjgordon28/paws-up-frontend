@@ -6,8 +6,14 @@ import { connect } from 'react-redux'
 import { Card, Image } from 'semantic-ui-react'
 import withAuth from '../hocs/withAuth'
 
+import { fetchPets } from '../actions/pet'
+import PetProfile from './PetProfile'
+
 
 class AdopterProfile extends React.Component{
+  state={
+    pet: null
+  }
     capitalize = (s) => {
    if (typeof s !== 'string'){ return ''}
    else{
@@ -18,8 +24,19 @@ class AdopterProfile extends React.Component{
     return splitStr.join(' '); }
   }
 
+  componentDidMount=()=>{
+      this.props.fetchPets()
+  }
+
+  handleClick=(id)=>{
+    console.log(this.props.pets.find(p => p.id === id))
+    let thisPet = this.props.pets.find(p => p.id === id)
+    this.setState({
+      pet: thisPet
+    })
+  }
+
     renderAdopterInfoList = () => {
-      console.log("here",this.props);
       if (this.props.adopter){
         return (
           <div className="adopterProfile">
@@ -75,7 +92,7 @@ class AdopterProfile extends React.Component{
         if(this.props.adopter.meetings.length){
           return (
             <Fragment>
-            <AdopterMeetingCard adopter={this.props.adopter}/>
+            <AdopterMeetingCard handleClick={this.handleClick}/>
             <h4><Link to="/"> Do you wnat to see more pets? </Link></h4>
             </Fragment>
           )
@@ -104,8 +121,9 @@ class AdopterProfile extends React.Component{
     }
 
     render(){
-      return(
-        <div className="adopter">
+      console.log("PROF",this.props);
+      return  this.state.pet ? ( <PetProfile currentPet={this.state.pet}/> ):
+       ( <div className="adopter">
             <div>{this.renderAdopterInfoList()}</div>
             <br/>
             <div className="meeting">{this.renderAdopterMeetings()}</div>
@@ -117,8 +135,9 @@ class AdopterProfile extends React.Component{
 
 
 
-const mapStateToProps = ({ adoptersReducer: { adopter: adopter } }) => ({
-  adopter
+const mapStateToProps = ({ adoptersReducer: { adopter: adopter }, petsReducer: {pets: pets} }) => ({
+  adopter,
+  pets
 })
 
-export default withAuth(connect(mapStateToProps)(AdopterProfile))
+export default withAuth(connect(mapStateToProps,{fetchPets})(AdopterProfile))

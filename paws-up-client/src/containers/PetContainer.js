@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
-import PetCard from '../components/PetCard'
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
+import PetCard from '../components/PetCard'
 import { fetchCurrentAdopter } from '../actions/adopter'
 import './PetPage.css'
 
@@ -11,37 +12,42 @@ class PetContainer extends React.Component {
   }
 
 
-renderPets = () => {
-  if (this.props.pets){
-  let petNameArray = this.props.pets.map((pet) => {
-    return <PetCard key={pet.id} pet={pet} setSelectedPet={this.props.setSelectedPet} />
-  })
-  return petNameArray
+  renderPets = () => {
+    console.log("HEYEYEYEYEY2",this.props.pets);
+    if (this.props.pets){
+    let petNameArray = this.props.pets.map((pet) => {
+      return  this.props.pets.map(pet =>
+                 <Link key={pet.id} to={"/pet/"+pet.id}>
+                 <PetCard key={pet.id} pet={pet} setSelectedPet={this.props.setSelectedPet}/>
+                 </Link>
+             )
+    })
+    return petNameArray
+    }
+    else{
+      return <h2 style = {{marginTop: "5em"}}>There are no pets that meet these specs!</h2>
+    }
   }
-  else{
-    return <h1 style = {{marginTop: "5em"}}>There are no pets that meet these specs!</h1>
-  }
-}
 
   render(){
     return (
-      <Fragment>
+            <Fragment>
 
-      <div className="container" >
-      {this.renderPets()}
-      </div>
+              <div className="container" >
+                  {this.renderPets()}
+              </div>
 
-      </Fragment>
-    )
+            </Fragment>
+          )
 
-  }
+        }
 
 }
 
-const mapStateToProps = (reduxStoreState) => {
+const mapStateToProps = (state) => {
   return {
-    loggedIn: reduxStoreState.adoptersReducer.loggedIn,
-    authenticatingAdopter: reduxStoreState.adoptersReducer.authenticatingAdopter
+    loggedIn: state.adoptersReducer.loggedIn,
+    authenticatingAdopter: state.adoptersReducer.authenticatingAdopter
   }
 }
 

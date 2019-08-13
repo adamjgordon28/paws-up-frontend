@@ -1,5 +1,27 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+
+
+export const createAdopter=(adopter)=>{
+      fetch(`{process.env.REACT_APP_API_ENDPOINT}/api/v1/adopters`,{
+        method: "POST",
+        headers: {"Content-Type": "application/json", Accepts: "application/json"},
+        body: JSON.stringify({
+          name: adopter.name,
+          username: adopter.username,
+          password: adopter.password,
+          age: adopter.age,
+          location: adopter.location,
+          residence_type: adopter.residence_type,
+          allergy: adopter.allergy,
+          other_pets: adopter.other_pets,
+          img_url: adopter.img_url})
+      })
+      .then(res=>res.json())
+
+}
+
 
 
 
@@ -25,11 +47,32 @@ class CreateAdopterForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createAdopter(this.state)
+    this.createAdopter(this.state)
   }
 
-  render(){
 
+  createAdopter=(adopter)=>{
+    
+        fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/adopters`,{
+          method: "POST",
+          headers: {"Content-Type": "application/json", Accepts: "application/json"},
+          body: JSON.stringify({
+            name: adopter.name,
+            username: adopter.username,
+            password: adopter.password,
+            age: adopter.age,
+            location: adopter.location,
+            residence_type: adopter.residence_type,
+            allergy: adopter.allergy,
+            other_pets: adopter.other_pets,
+            img_url: adopter.img_url})
+        })
+        .then(data => this.props.history.push("/login"))
+  }
+
+
+
+  render(){
     return(
       <div>
 

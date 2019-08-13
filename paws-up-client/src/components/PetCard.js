@@ -12,7 +12,6 @@ const PetCard = (props) => {
   }
 
 
-
   let animalType;
   switch (props.pet.animal) {
     case "dog":
@@ -55,5 +54,7 @@ const PetCard = (props) => {
         </div>
     )
 }
+
+
 
 export default PetCard

@@ -4,36 +4,28 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import ReactDOM from 'react-dom'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './index.css';
 
 import 'semantic-ui-css/semantic.min.css'
 
 import App from './App'
-import adoptersReducer from './reducers/adoptersReducer' //TODO: move
+import adoptersReducer from './reducers/adoptersReducer'
 import petsReducer from './reducers/petsReducer'
 
 import registerServiceWorker from './registerServiceWorker'
 
-// combines your reducers =>
-/*
-{
-  key: value
-  whereToNestReducerState: reducer
-}
-*/
-const rootReducer = combineReducers({ adoptersReducer: adoptersReducer, petsReducer: petsReducer }) //TODO: move this too
 
-// dion't use thunk if you don't think you need to
-// is not the only lubrary to do that -=> redux-saga, redux-promise
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk))) //TODO: move this
+const rootReducer = combineReducers({ adoptersReducer: adoptersReducer, petsReducer: petsReducer }) 
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
 console.log(`%c INITIAL REDUX STORE`, 'color: purple', store.getState())
 
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <App />
+      <Route path="/" component={App} />
     </Router>
   </Provider>,
   document.getElementById('root')

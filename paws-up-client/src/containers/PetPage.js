@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import Filter from '../components/Filter.js'
 import './PetPage.css'
 
-import { fetchPets } from '../actions/pet'
+import { fetchPets, setPet } from '../actions/pet'
 import { connect } from 'react-redux'
 
 
@@ -74,7 +74,6 @@ class PetPage extends React.Component {
   }
 
 
-
   componentDidMount(){
     this.props.fetchPets()
   }
@@ -83,34 +82,35 @@ class PetPage extends React.Component {
     this.setState({
       selectedPetId: pet.id
     })
+    this.findPet(pet.id)
   }
 
   findPet = (id) => {
-    return this.props.pets.filter(p=>p.id === id)
+    let currentPet = this.props.pets.filter(p=>p.id === id)
+    this.props.setPet(currentPet[0])
   }
 
-  render(){
-    console.log("HEREHERE", this.props.pets);
-  return (
 
+
+  render(){
+  return (
     <div className="page">
     {this.state.selectedPetId? null: <Header/>}
     {this.state.selectedPetId ?
-      <PetProfile
-      fetchAndSetAdopters= {this.props.fetchAndSetAdopters}
-      currentAdopter= {this.props.currentAdopter}
-      pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
+      <PetProfile />
 
-    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.props.pets)} setSelectedPet = {this.setSelectedPet}/> </Fragment>}
+    : <Fragment>
+      <Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/>
+      <PetContainer pets = {this.filterPets(this.props.pets)}  setSelectedPet = {this.setSelectedPet}/>
+      </Fragment>}
     </div>
-
-
-  )
+    )
   }
 }
 
-const mapStateToProps = ({ petsReducer: { pets: pets } }) => ({
-  pets
+const mapStateToProps = ({ petsReducer: { pets: pets, currentPet: currentPet } }) => ({
+  pets,
+  currentPet
 })
 
-export default connect(mapStateToProps,{fetchPets})(PetPage)
+export default connect(mapStateToProps,{fetchPets, setPet})(PetPage)

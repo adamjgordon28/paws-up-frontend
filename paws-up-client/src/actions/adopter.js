@@ -22,13 +22,13 @@ export const loginAdopter = (username, password) => {
         }
       })
       .then(JSONResponse => {
-        console.log('%c INSIDE YE OLDE .THEN', 'color: navy')
         localStorage.setItem('jwt', JSONResponse.jwt)
         dispatch({ type: 'SET_CURRENT_ADOPTER', payload: JSONResponse.adopter })
       })
       .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
   }
 }
+
 
 export const fetchCurrentAdopter = () => {
   return (dispatch) => {
@@ -43,6 +43,7 @@ export const fetchCurrentAdopter = () => {
       .then((JSONResponse) => dispatch(setCurrentAdopter(JSONResponse.adopter)))
   }
 }
+
 
 export const setCurrentAdopter = (adopterData) => ({
   type: 'SET_CURRENT_ADOPTER',
@@ -60,3 +61,12 @@ export const logout = () => {return (dispatch)=>{
   localStorage.removeItem("jwt")
   dispatch({ type: 'LOG_OUT'})
 }}
+
+
+export const addMeetingToCurrentAdopter = (meeting)=> ({
+  type: "ADD_MEETING_TO_CURRENT_ADOPTER", payload: meeting
+})
+
+export const deleteMeetingToCurrentAdopter = (meeting)=> ({
+  type: "DELETE_MEETING_TO_CURRENT_ADOPTER", payload: meeting
+})

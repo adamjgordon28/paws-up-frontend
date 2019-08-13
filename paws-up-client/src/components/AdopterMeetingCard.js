@@ -1,11 +1,16 @@
 import React from 'react';
+import {setPet} from '../actions/pet';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux'
 
 class AdopterMeetingCard extends React.Component {
+
+
 
   renderMeetingRows = () => {
     let rowArray = this.props.adopter.meetings.map((meeting) => {
       return (<tr key={Math.random()}>
-        <td>
+        <td onClick={()=>this.props.handleClick(meeting.pet_id)}>
           <h4 className="ui image header">
             <img alt="" src={meeting.pet_img_url} className="ui mini rounded image"/>
             <div className="content">
@@ -25,11 +30,13 @@ class AdopterMeetingCard extends React.Component {
     return(
       <div className="ui raised card" style={{marginTop: "3em", padding: "0.25em"}}>
       <table className="ui very basic collapsing celled table">
-  <thead>
-  <th style={{textAlign:"center", background: "darkblue", color: "white"}} colSpan="2">Meetings</th>
-    <tr><th>Pet Name</th>
-    <th>Date</th>
-  </tr></thead>
+      <thead>
+      <th style={{textAlign:"center", background: "darkblue", color: "white"}} colSpan="2">Meetings</th>
+      <tr>
+      <th>Pet Name</th>
+      <th>Date</th>
+      </tr>
+      </thead>
 
 
   <tbody>
@@ -41,4 +48,12 @@ class AdopterMeetingCard extends React.Component {
   }
 }
 
-export default AdopterMeetingCard
+
+
+
+const mapStateToProps = ({ adoptersReducer: { adopter: adopter }, petsReducer: {currentPet: currentPet} }) => ({
+  adopter,
+  currentPet
+})
+
+export default connect(mapStateToProps, {setPet})(AdopterMeetingCard)
