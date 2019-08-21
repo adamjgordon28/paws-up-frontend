@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PetContainer from './PetContainer.js';
 import PetProfile from '../components/PetProfile.js';
 import Filter from '../components/Filter.js';
+import Header from '../components/Header'
 
 class PetPage extends React.Component {
 
@@ -87,7 +88,7 @@ class PetPage extends React.Component {
     {this.state.selectedPetId ?
       <PetProfile fetchAndSetAdopters= {this.props.fetchAndSetAdopters} currentUser= {this.props.currentUser} pet = {this.findPet(this.state.selectedPetId)} fetchPets={this.fetchPets}/>
 
-    : <Fragment><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.props.pets)}/> </Fragment>}
+    : <Fragment> <Header/><Filter setAnimalFilter ={this.setAnimalFilter} setSizeFilter ={this.setSizeFilter} setSexFilter ={this.setSexFilter}/><PetContainer pets = {this.filterPets(this.props.pets)}/> </Fragment>}
     </Fragment>
   )
   }

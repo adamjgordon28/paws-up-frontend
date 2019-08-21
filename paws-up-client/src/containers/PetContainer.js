@@ -1,5 +1,6 @@
 import React from 'react';
 import PetCard from '../components/PetCard.js'
+import header from '../components/Header'
 
 
 class PetContainer extends React.Component {
@@ -14,13 +15,16 @@ renderPets = () => {
   return petNameArray
   }
   else{
-    return <h1 style = {{marginTop: "5em"}}>There are no pets that meet these specs!</h1>
+    return <h2 style = {{marginTop: "5em"}}>There are no pets that meet these specs!</h2>
   }
 }
 
   render(){
     return (
-      <div className="ui grid" >
+      <div style={{  display: "inline-flex",
+                     flexWrap: "wrap",
+                     alignItems: "center",
+                     marginLeft: "5em"}}>
       {this.renderPets()}
       </div>
     )

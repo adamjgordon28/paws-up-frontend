@@ -5,7 +5,8 @@ class PetMeetingCard extends React.Component {
 
   renderMeetingRows = () => {
     let rowArray = this.props.currentPet.meetings.map((meeting) => {
-      return (<tr>
+      return (
+        <tr>
         <td>
           <h4 className="ui image header">
             <img alt="" src={meeting.adopter_img_url} className="ui mini rounded image"/>
@@ -18,28 +19,34 @@ class PetMeetingCard extends React.Component {
         <td>
           {meeting.date}
         </td>
-      </tr>)
+      </tr>
+    )
     })
     return rowArray
   }
   render(){
     return(
-      <div className="ui raised card" style={{marginTop: "3em", padding: "0.25em", maxHeight:"24em", overflowY:"scroll"}}>
+      <div className="ui raised card"
+           style={{marginTop: "18em",
+                   padding: "0.25em",
+                   maxHeight:"24em",
+                   overflowY:"scroll"}}>
       <table className="ui very basic collapsing celled table">
-
-  <thead>
-    <th style={{textAlign:"center", background: "darkblue", color: "white"}} colSpan="2">Meetings</th>
-    <tr><th>Adopter Name</th>
-    <th>Date</th>
-  </tr></thead>
-
-
-  <tbody>
-    {this.renderMeetingRows()}
-  </tbody>
-</table>
-</div>
-    )
+        <thead>
+          <th style={{textAlign:"center",
+                      background: "darkblue",
+                      color: "white",
+                      width: "50em"}} colSpan="2">Meetings</th>
+          <tr><th>Adopter Name</th>
+          <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+          {this.renderMeetingRows()}
+        </tbody>
+      </table>
+    </div>
+        )
   }
 }
 

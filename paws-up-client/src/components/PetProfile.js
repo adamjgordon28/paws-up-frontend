@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PetMeetingCard from "./PetMeetingCard.js";
 import CreateMeetingCard from "./CreateMeetingCard.js";
+import './header.css';
+
 
 class PetProfile extends Component {
-
 
   componentDidMount = () => {
     this.fetchAndSetPet(this.props.match.params.id)
@@ -42,37 +43,39 @@ class PetProfile extends Component {
 
 
   renderPetInfoList = () => {
-      return (<div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em"}}>
-  <img alt="" className="ui medium circular image" src={this.props.currentPet.img_url}/>
-  <h1>{this.props.currentPet.name}</h1><div className="ui list">
-  <div className="item">
-    <i className="marker icon"></i>
-    <div className="content">
-      {this.props.currentPet.location}
-    </div>
-  </div>
-  <div className="item">
-  <i className="birthday cake icon"></i>
-  <div className="content">
-    {this.renderAge(this.props.currentPet.age)}
-    {this.props.currentPet.age > 12 ? `(`+this.props.currentPet.age+`months)`:`` }
-  </div>
-  </div>
-  <div className="item">
-  <i className="certificate icon"></i>
-  <div className="content">
-    {this.props.currentPet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
-  </div>
-  </div>
-  <div className="item">
-  {this.props.currentPet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
-  <div className="content">
-    {this.props.currentPet.sex === "male"  ? "Male" : "Female"}
-  </div>
-  </div>
-  </div>
+      return (
+        <div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em", marginLeft: "5em", marginTop: "2em"}}>
+        <h1 className="logo" style={{fontSize:"4em"}}>{this.props.currentPet.name}</h1>
+        <img alt="" className="ui medium circular image" src={this.props.currentPet.img_url}/>
+        <div className="ui list">
+        <div className="item">
+        <i className="marker icon"></i>
+        <div className="content">
+        {this.props.currentPet.location}
+        </div>
+        </div>
+        <div className="item">
+        <i className="birthday cake icon"></i>
+        <div className="content">
+          {this.renderAge(this.props.currentPet.age)}
+          {this.props.currentPet.age > 12 ? `(`+this.props.currentPet.age+`months)`:`` }
+        </div>
+        </div>
+        <div className="item">
+        <i className="certificate icon"></i>
+        <div className="content">
+          {this.props.currentPet.allergy? "Pet is Allergenic": "Pet is Not Allergenic"}
+        </div>
+        </div>
+        <div className="item">
+        {this.props.currentPet.sex === "male" ? <i className="mars icon"></i> : <i className="venus icon"></i>}
+        <div className="content">
+          {this.props.currentPet.sex === "male"  ? "Male" : "Female"}
+        </div>
+        </div>
+        </div>
 
-  </div>)
+        </div>)
   }
 
     addPetMeeting = (meeting) => {
@@ -88,7 +91,7 @@ class PetProfile extends Component {
         return (<PetMeetingCard pet={this.props.currentPet}/>)
       }
       else {
-        return(<div style={{position:"relative", top:"2em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
+        return(<div style={{position:"relative", top:"12em"}} className="ui message huge">This Pet Has No Meetings Yet! Set One Up!</div>)
       }
   }
 
