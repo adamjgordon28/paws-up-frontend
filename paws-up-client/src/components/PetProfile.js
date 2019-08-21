@@ -47,6 +47,7 @@ class PetProfile extends Component {
         <div style={{position:"relative", right: "6em", fontSize: "1.6em", marginBottom: "5em", marginLeft: "5em", marginTop: "2em"}}>
         <h1 className="logo" style={{fontSize:"4em"}}>{this.props.currentPet.name}</h1>
         <img alt="" className="ui medium circular image" src={this.props.currentPet.img_url}/>
+        <hr/>
         <div className="ui list">
         <div className="item">
         <i className="marker icon"></i>
