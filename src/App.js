@@ -29,7 +29,7 @@ class App extends Component {
     const token = localStorage.getItem("token")
 
     if (token) {
-      fetch("http://localhost:4000/api/v1/auto_login", {
+      fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/auto_login"), {
         headers: {
           "Authorization": token
         }
@@ -53,7 +53,7 @@ class App extends Component {
   }
 
   createPet = (pet)=> {
-    fetch("http://localhost:4000/api/v1/pets",{
+    fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/pets"),{
       method: "POST",
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
       body: JSON.stringify(pet)
@@ -72,7 +72,7 @@ class App extends Component {
   }
 
   fetchPets = () => {
-    fetch("http://localhost:4000/api/v1/pets")
+    fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/pets"))
     .then(res => res.json())
     .then(pets => {
       this.props.setPets(pets)

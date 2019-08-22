@@ -11,7 +11,7 @@ class PetProfile extends Component {
   }
 
   fetchAndSetPet = (id) => {
-    fetch("http://localhost:4000/api/v1/pets/".concat(`${id}`))
+    fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/pets/").concat(`${id}`))
     .then(res => res.json())
     .then(pet => {
       this.props.setCurrentPet(pet)

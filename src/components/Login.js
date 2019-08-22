@@ -10,7 +10,7 @@ class Login extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:4000/api/v1/login",{
+    fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/login"),{
       method: "POST",
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
       body: JSON.stringify(this.state)

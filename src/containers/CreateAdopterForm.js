@@ -28,7 +28,7 @@ class CreateAdopterForm extends React.Component {
   }
 
   createAdopter = (adopter)=> {
-    fetch("http://localhost:4000/api/v1/adopters",{
+    fetch(`${process.env.REACT_APP_BASE_URL}`.concat("/api/v1/adopters"),{
       method: "POST",
       headers: {"Content-Type": "application/json", Accepts: "application/json"},
       body: JSON.stringify({name: adopter.name,

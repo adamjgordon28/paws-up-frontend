@@ -73,7 +73,7 @@ class AdopterProfile extends React.Component{
         }
         else {
           return(<div style={{position:"relative", top:"6em"}} className="ui message huge">
-          You Haven't Set Any Pet Meetings Up Yet! <Link to="/"><span style={{color:"blue"}}>Go See Some Pets!</span></Link>
+          You Haven't Set Any Pet Meetings Up Yet! <Link to="/pets"><span style={{color:"blue"}}>Go See Some Pets!</span></Link>
           </div>)
         }
       }
