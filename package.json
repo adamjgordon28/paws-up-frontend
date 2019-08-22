@@ -16,7 +16,10 @@
     "semantic-ui-react": "^0.77.0"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "REACT_APP_BASE_URL=http://localhost:4000 NODE_ENV=development react-scripts start",
+    "build": "REACT_APP_BASE_URL=http://www.pawsup.site NODE_ENV=production react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
