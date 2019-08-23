@@ -13,7 +13,6 @@ class PetContainer extends React.Component {
 
 
   renderPets = () => {
-    console.log("HEYEYEYEYEY2",this.props.pets);
     if (this.props.pets){
     let petNameArray = this.props.pets.map((pet) => {
       return  this.props.pets.map(pet =>
@@ -32,11 +31,9 @@ class PetContainer extends React.Component {
   render(){
     return (
             <Fragment>
-
               <div className="container" >
                   {this.renderPets()}
               </div>
-
             </Fragment>
           )
 

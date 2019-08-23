@@ -13,7 +13,7 @@ class PetMeetingCard extends React.Component {
     let rowArray = this.props.pet.meetings.map((meeting) => {
       return (<tr>
               <Link to={"/profile/"}  style={{display: "inline"}}>
-              <td>
+              <td style={{padding: "1em", textAlign:"center"}}>
                 <h4 className="ui image header">
                       <img alt="" src={meeting.adopter_img_url} className="ui mini rounded image"/>
                       <div className="content">
@@ -27,17 +27,24 @@ class PetMeetingCard extends React.Component {
                 {meeting.date}
               </td>
               <td>
-              <Icon link name='close' value={meeting.id} onClick={this.handleClick}/>
+              {this.deleteButton(meeting)}
               </td>
             </tr>)
           })
           return rowArray
   }
 
+  deleteButton=(meeting)=>{
+    return(
+    meeting.adopter_id===this.props.adopter.id ?
+    <Icon link name='close' value={meeting.id} onClick={this.handleClick}/> : null
+    )
+  }
+
+
   handleClick=()=>{
     let meeting= this.props.pet.meetings.find(m=>m.adopter_id===this.props.adopter.id)
-    console.log(meeting.id)
-    // debugger
+  
     this.props.deleteMeeting(meeting.id)
   }
 
@@ -46,9 +53,10 @@ class PetMeetingCard extends React.Component {
   render(){
     return(
       <div className="ui raised card"
-           style={{marginTop: "3em",
-                   padding: "0.25em"}}>
-      <table celled className="petMeetingCard">
+           style={{marginTop: "2em",
+                   padding: "0.25em",
+                   width: "28em"}}>
+      <table className="petMeetingCard">
       <thead>
         <tr>
             <th colSpan="3"
@@ -65,8 +73,7 @@ class PetMeetingCard extends React.Component {
             background: "	#DCDCDC",
             }}>
           <th style={{textAlign:"center",
-                padding: ".4em"
-                }}>
+                      padding: ".4em"}}>
               Adopter Name</th>
           <th>Date</th>
           <th></th>

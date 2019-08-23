@@ -32,9 +32,7 @@ const adoptersReducer = (state=defaultState, action) => {
     case 'DELETE_MEETING_TO_CURRENT_ADOPTER':
           let index = state.adopter.meetings.indexOf(state.adopter.meetings.find(m=>m.id === action.payload))
           let newMeetings = [...state.adopter.meetings.slice(0, index), ...state.adopter.meetings.slice(index + 1)]
-          return {...state, adopter: {
-            ...state.adopter, meeting: newMeetings
-              }};
+          return {...state, adopter: {...state.adopter, meetings: newMeetings}};
     case 'LOG_OUT':
       return defaultState;
     default:

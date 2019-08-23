@@ -16,11 +16,11 @@ import petsReducer from './reducers/petsReducer'
 import registerServiceWorker from './registerServiceWorker'
 
 
-const rootReducer = combineReducers({ adoptersReducer: adoptersReducer, petsReducer: petsReducer }) 
+
+const rootReducer = combineReducers({ adoptersReducer: adoptersReducer, petsReducer: petsReducer })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
 
-console.log(`%c INITIAL REDUX STORE`, 'color: purple', store.getState())
 
 ReactDOM.render(
   <Provider store={store}>

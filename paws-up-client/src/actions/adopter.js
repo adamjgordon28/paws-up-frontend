@@ -57,6 +57,7 @@ export const failedLogin = (errorMsg) => ({
 
 export const authenticatingAdopter = () => ({ type: 'AUTHENTICATING_ADOPTER' })
 
+
 export const logout = () => {return (dispatch)=>{
   localStorage.removeItem("jwt")
   dispatch({ type: 'LOG_OUT'})

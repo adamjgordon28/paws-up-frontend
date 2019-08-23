@@ -5,12 +5,14 @@ import '../containers/PetPage.css'
 
 import { connect } from 'react-redux'
 import withAuth from '../hocs/withAuth'
-import { setPet, fetchPets, deleteMeetingToCurrentPet } from '../actions/pet'
-import { fetchCurrentAdopter, deleteMeetingToCurrentAdopter } from '../actions/adopter'
-
+import {deleteMeetingToCurrentPet, fetchCurrentPet, setPet } from '../actions/pet'
+import { deleteMeetingToCurrentAdopter } from '../actions/adopter'
 
 
 class PetProfile extends React.Component {
+  state = {
+    pet: ""
+  }
 
   conditionallyRenderMeetingPrompt = () => {
     let formerMeetingAdopterIds = this.props.currentPet.meetings.map((meeting) => meeting.adopter_id)
@@ -19,7 +21,7 @@ class PetProfile extends React.Component {
       return null
     }
     else {
-      return (<CreateMeetingCard currentAdopter={this.props.adopter} pet={this.props.currentPet} />
+      return (< CreateMeetingCard currentAdopter={this.props.adopter} pet={this.props.currentPet} />
       )
     }
   }
@@ -32,35 +34,19 @@ class PetProfile extends React.Component {
     }else{return Math.floor(parseInt(age)/12)+" years old "}
   }
 
-  // componentDidMount = () => {
-  //   this.props.fetchPets()
-  // }
-  //
-  // componentWillMount = () => {
-  //   this.fetchAndSetPet(this.props.match.params.id)
-  // }
-  //
-  //
-  // fetchAndSetPet = (id) => {
-  //   fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/pets/${id}`)
-  //   .then(res => res.json())
-  //   .then(pet => {
-  //     this.props.setPet(pet)
-  //   })
-  // }
 
   deleteMeeting=(id)=>{
-  fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/meetings/${id}`,
-  {method: 'DELETE'})
-  this.props.deleteMeetingToCurrentAdopter(id)
-  this.props.deleteMeetingToCurrentPet(id);
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/meetings/${id}`,
+    {method: 'DELETE'})
+    this.props.deleteMeetingToCurrentAdopter(id)
+    this.props.deleteMeetingToCurrentPet(id)
   }
 
   renderPetInfoList = () => {
       return (
         <div className="petinfo">
             <h1>{this.props.currentPet.name}</h1>
-          <img alt="" className="ui medium circular image" src={this.props.currentPet.img_url}/>
+          <img alt="" className="ui medium circular image" style={{maxHeight: "22em", objectFit: "cover"}} src={this.props.currentPet.img_url}/>
           <br/> <br/>
           <hr/>
           <div className="ui list">
@@ -109,6 +95,7 @@ class PetProfile extends React.Component {
 
   render(){
     console.log(this.props);
+    console.log(this.state);
     return(
       <div className="PetProfile">
                 {this.renderPetInfoList()}
@@ -132,6 +119,5 @@ const mapStateToProps = (state) => {
 }
 
 
-// export default withAuth(connect(mapStateToProps, {setPet})(PetProfile))
 
-export default withAuth(connect(mapStateToProps, {setPet , fetchPets, fetchCurrentAdopter, deleteMeetingToCurrentPet, deleteMeetingToCurrentAdopter})(PetProfile))
+export default withAuth(connect(mapStateToProps, { fetchCurrentPet,  deleteMeetingToCurrentPet, deleteMeetingToCurrentAdopter, setPet})(PetProfile))

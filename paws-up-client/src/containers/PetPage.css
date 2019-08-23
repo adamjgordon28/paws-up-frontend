@@ -12,7 +12,6 @@
 }
 
 @import url('https://fonts.googleapis.com/css?family=Gorditas:700');
-
 h1{
     font-family: 'Gorditas', cursive;
     font-size: 6em;
@@ -29,7 +28,7 @@ h1{
   font-size: 1.2em;
 }
 .meetingcard{
-  padding-top: 13em;
+  margin-top: 10em;
   margin-left: 10em;
 }
 

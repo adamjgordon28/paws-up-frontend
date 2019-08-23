@@ -84,7 +84,7 @@ class PetPage extends React.Component {
     })
     this.findPet(pet.id)
   }
-
+  
   findPet = (id) => {
     let currentPet = this.props.pets.filter(p=>p.id === id)
     this.props.setPet(currentPet[0])
@@ -109,8 +109,7 @@ class PetPage extends React.Component {
 }
 
 const mapStateToProps = ({ petsReducer: { pets: pets, currentPet: currentPet } }) => ({
-  pets,
-  currentPet
+  pets
 })
 
-export default connect(mapStateToProps,{fetchPets, setPet})(PetPage)
+export default connect(mapStateToProps,{fetchPets, setPet })(PetPage)

@@ -68,9 +68,9 @@ class CreateMeetingCard extends React.Component {
     render(){
       return(
         <div style={{marginTop: "2em",
-                     marginLeft: "3em",
                      color: "black",
-                     padding: ".25em"}}
+                     padding: ".25em",
+                     width:"28em"}}
                      className="ui raised card">
         <input style={{margin: "0.25em"}} onChange={this.handleChange} type="date" name="datetime" required />
         <select style={{margin: "0.25em"}} onChange={this.handleChange} name="location" required >

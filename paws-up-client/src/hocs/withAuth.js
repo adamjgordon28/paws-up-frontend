@@ -2,17 +2,21 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 import { fetchCurrentAdopter } from '../actions/adopter'
+import { fetchCurrentPet } from '../actions/pet'
 import { Loader } from 'semantic-ui-react'
 
 const withAuth = (WrappedComponent) => {
   class AuthorizedComponent extends React.Component {
+
     componentDidMount() {
-      if (localStorage.getItem('jwt') && !this.props.loggedIn) this.props.fetchCurrentAdopter()
+      this.props.fetchCurrentPet(this.props.match.params.iPd)
+      if (localStorage.getItem('jwt') && !this.props.loggedIn){ this.props.fetchCurrentAdopter()
+    }
     }
 
     render() {
       if (localStorage.getItem('jwt') && this.props.loggedIn) {
-        return <WrappedComponent />
+        return <WrappedComponent {...this.props}/>
       } else if (localStorage.getItem('jwt') && (this.props.authenticatingAdopter || !this.props.loggedIn)) {
         return <Loader active inline="centered" />
       } else {
@@ -21,15 +25,15 @@ const withAuth = (WrappedComponent) => {
     }
   }
 
-  const mapStateToProps = (reduxStoreState) => {
+  const mapStateToProps = (state) => {
     return {
-      loggedIn: reduxStoreState.adoptersReducer.loggedIn,
-      authenticatingAdopter: reduxStoreState.adoptersReducer.authenticatingAdopter
+      loggedIn: state.adoptersReducer.loggedIn,
+      authenticatingAdopter: state.adoptersReducer.authenticatingAdopter
     }
   }
 
 
-  return connect(mapStateToProps, { fetchCurrentAdopter })(AuthorizedComponent)
+  return connect(mapStateToProps, { fetchCurrentAdopter, fetchCurrentPet })(AuthorizedComponent)
 }
 
 export default withAuth

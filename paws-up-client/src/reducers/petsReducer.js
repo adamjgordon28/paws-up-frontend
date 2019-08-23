@@ -9,6 +9,7 @@ const petsReducer=(state=defaultState, action)=>{
     case 'SET_ALL_PETS':
       return { ...state, pets: action.payload}
     case 'SET_PET':
+    // debugger
       return { ...state, currentPet: action.payload}
     case 'ADD_MEETING_TO_CURRENT_PET':
       return {

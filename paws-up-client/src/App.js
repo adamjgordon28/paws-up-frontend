@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom'
-// import Profile from './components/profile'
+
 import LoginForm from './components/Login'
 import NavBar from './components/NavBar'
 import PetPage from './containers/PetPage'
@@ -10,11 +10,10 @@ import AdopterProfile from './components/AdopterProfile'
 import PetProfile from './components/PetProfile'
 import About from './components/About'
 
+
 import './App.css'
 
-
 const App = props => {
-  console.log('%c APP Props: ', 'color: firebrick', props)
   return (
     <Fragment>
       <NavBar />
@@ -25,7 +24,7 @@ const App = props => {
         <Route exact path="/signup" component={CreateAdopterForm} />
         <Route exact path="/logout" render={() => <Redirect to="/" />} />
         <Route exact path="/pets" component={PetPage}/>
-        <Route exact path = '/pet/:id' component={PetProfile}/>
+        <Route exact path = '/pet/:iPd' component={PetProfile}/>
         <Route exact path="/newpet" component={CreatePetForm} />
         <Route exact path="/about" component={About}/>
       </Switch>

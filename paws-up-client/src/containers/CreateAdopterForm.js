@@ -52,7 +52,7 @@ class CreateAdopterForm extends React.Component {
 
 
   createAdopter=(adopter)=>{
-    
+
         fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/adopters`,{
           method: "POST",
           headers: {"Content-Type": "application/json", Accepts: "application/json"},
@@ -74,10 +74,14 @@ class CreateAdopterForm extends React.Component {
 
   render(){
     return(
-      <div>
+      <div style={{display: "flex",
+                  paddingTop: "4em",
+                  paddingLeft: "10em",
+                  alignItems: "right"
+                  }}>
 
-      <h2>Create an Adopter Account!</h2>
         <form className="ui form" onSubmit ={this.handleSubmit} style = {{width: "25em"}}>
+        <h2>Create an Adopter Account!</h2>
         <input placeholder="Name" onChange={this.handleChange} name="name" type="text" required /> <br/><br/>
         <input placeholder="username" onChange={this.handleChange} name="username" type="text" required /> <br/><br/>
         <input placeholder="Password" onChange={this.handleChange} name="password" type="password" required /> <br/><br/>
@@ -112,6 +116,16 @@ class CreateAdopterForm extends React.Component {
         <input onChange={this.handleChange} placeholder="image URL" name="img_url" type="url" required/>
         <br/><br/><button className="ui button" type="submit">Submit</button>
         </form>
+        <div >
+        <img style={{width:"48%",
+                     height:"90%",
+                     marginLeft: "10em",
+                     marginTop: "2em",
+                     border: "1px solid grey",
+                     padding: "5px",
+                     borderRadius: "10px"}} src="http://coolsandfools.com/wp-content/uploads/2014/03/excited-labrador.jpg"/>
+        </div>
+
       </div>
 
     )

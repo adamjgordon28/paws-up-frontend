@@ -52,12 +52,12 @@ class Login extends React.Component {
   }
 }
 
-const mapStateToProps = (reduxStoreState) => {
+const mapStateToProps = (state) => {
   return {
-    authenticatingAdopter: reduxStoreState.adoptersReducer.authenticatingAdopter,
-    failedLogin: reduxStoreState.adoptersReducer.failedLogin,
-    error: reduxStoreState.adoptersReducer.error,
-    loggedIn: reduxStoreState.adoptersReducer.loggedIn
+    authenticatingAdopter: state.adoptersReducer.authenticatingAdopter,
+    failedLogin: state.adoptersReducer.failedLogin,
+    error: state.adoptersReducer.error,
+    loggedIn: state.adoptersReducer.loggedIn
   }
 }
 

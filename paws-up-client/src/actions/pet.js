@@ -17,6 +17,17 @@ export const fetchPets = () => {
 }
 }
 
+export const fetchCurrentPet = (id) => {
+  return (dispatch) => {
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/api/v1/pets/${id}`)
+      .then(response => response.json())
+      .then((JSONResponse) => {
+        console.log('????????',JSONResponse);
+        dispatch(setPet(JSONResponse))})
+  }
+}
+
+
 
 export const setAllPets = (petData) => ({
   type: 'SET_ALL_PETS',
